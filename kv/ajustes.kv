@@ -1,0 +1,62 @@
+<Ajustes>
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgba: 0, .4, 0, 0.1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+
+        BoxLayout:
+            size_hint: (1, 1)
+            FloatLayout:
+                
+                MDLabel:
+                    pos_hint: {"x": .3, "top": .5}
+                    size_hint: (.2, .1)
+                    text: "Modo noche: "
+                    halign: "center"
+                    theme_text_color: "Primary"
+                    font_style: "H6"
+
+                MDSwitch:
+                    id: mode
+                    pos_hint: {"x": .5, "top": .5}
+                    size_hint: (.05, .1)
+                    on_active: root.change_mode(*args)
+        
+        BoxLayout:
+            size_hint: (1, 1)
+            FloatLayout:
+
+                MDLabel:
+                    id: tema
+                    pos_hint: {"x": .29, "top": .5}
+                    size_hint: (.2, .1)
+                    text: "Tema: "
+                    halign: "center"
+                    theme_text_color: "Primary"
+                    font_style: "H6"
+                
+                MDIconButton:
+                    pos_hint: {"x": .5, "top": .58}
+                    #size_hint: (.2, .1)
+                    icon: "border-color"
+                    on_release: root.show_theme_picker()
+        
+        BoxLayout:
+
+            size_hint: (1, 1)
+            canvas:
+                Color:
+                    rgba: 0, 1, 0, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+
+                
+
+

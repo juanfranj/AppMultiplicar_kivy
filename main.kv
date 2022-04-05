@@ -1,0 +1,86 @@
+#:include kv/multiplicar.kv
+#:include kv/inicio.kv
+#:include kv/resultados.kv
+#:include kv/ajustes.kv
+
+MDNavigationLayout:
+    id: nav_layout
+    ScreenManager:
+
+        Screen:
+
+            BoxLayout:
+                orientation: 'vertical'
+            
+                MDToolbar:
+                    title: app.title
+                    elevation: 10
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state()]]
+                    #right_action_items: [["brightness-6", lambda x:root.change_mode(*args)]
+
+
+                ScreenManager:
+                    id:screen_manager
+
+                    Inicio:
+                        id: inicio
+                        name: "inicio"
+                    Multiplicar:
+                        id: multiplicar
+                        name:"multiplicar"
+                    Resultados:
+                        id: resultados
+                        name: "resultados"
+                    Ajustes:
+                        id: ajustes
+                        name: "ajustes"
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: '8dp'
+            spacing: '8dp'
+
+            Image:
+                source: "resources/logo.png"
+            
+            ScrollView:
+
+                MDList:
+
+                    OneLineIconListItem:
+                        text: "Inicio"
+                        # Aquí va lo que queremos ejecutar cuando se suelta el botón
+                        on_release:
+                            screen_manager.current = "inicio"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "language-python"
+
+                    OneLineIconListItem:
+                        text: "Multiplicar"
+                        # Aquí va lo que queremos ejecutar cuando se suelta el botón
+                        on_release:
+                            screen_manager.current = "multiplicar"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "multiplication-box"
+                    
+                    OneLineIconListItem:
+                        text: "Resultados"
+                        on_release:
+                            screen_manager.current = "resultados"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "database"
+                    
+                    OneLineIconListItem:
+                        text: "Ajustes"
+                        on_release:
+                            screen_manager.current = "ajustes"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "cogs"

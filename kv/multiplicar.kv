@@ -1,0 +1,190 @@
+<Multiplicar>
+    BoxLayout:
+        padding: 10
+        spacing: 10
+        orientation: "vertical"
+
+        BoxLayout:
+            size_hint: (1,.15)
+            orientation: "horizontal"
+
+            canvas:
+                Color:
+                    rgba: .46, .79, .73, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+
+            FloatLayout:
+
+                MDFillRoundFlatButton:
+
+                    pos_hint: {"x":0.05, "center_y":.5}
+                    #size_hint: 0.3, None
+                    id: limpiar_tablas
+                    text: "Comenzar"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    #md_bg_color: 0.17, 0.62, .35, 1
+                    md_bg_color: app.theme_cls.primary_color
+                    on_release: 
+                    
+
+                MDFillRoundFlatButton:
+                    
+                    pos_hint: {"x":.2, "center_y":.5}
+                    #size_hint: 1.0, None
+                    text: "Errores"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    #md_bg_color: 0.17, 0.62, .35, 1
+                    md_bg_color: app.theme_cls.primary_color
+                    on_release: 
+
+                MDLabel:
+                    pos_hint: {"x": .4, "center_y": .5}
+                    size_hint: (.3, .5)
+                    font_style: "H6"
+                    halign: "center"
+                    text: "Nº multiplicaciones:"
+
+                MDTextFieldRect:
+                    id: total
+                    pos_hint:{"x":.7, "center_y": 0.5}
+                    size_hint:(.15, .5)
+                    hint_text:"Ingresar Valor" 
+                    halign:"center"
+                    font_style:"H6"
+        BoxLayout:
+            size_hint: (1, .25)
+            # pos_hint: {"center_x": 0.5, "top": 0.97}
+            canvas:
+                Color:
+                    rgba: 0, .4, 0, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+            
+            MDLabel:
+                #pos_hint: {"left": .2, "top": .5}
+                size_hint: (.2, 1)
+                font_style: "H5"
+                halign: "center"
+                text: "Tablas:"
+            GridLayout:
+                id: tablas
+                size_hint: (.8, 1)
+                rows: 1
+                #orientation: "lr-tb"
+                #pos_hint: {"x": 0, "top": .95}
+
+        BoxLayout:
+            size_hint: (1,.15)
+
+            canvas:
+                Color:
+                    rgba: 0.16, .7, 0.38, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+            MDLabel:
+                id: texto_multi
+                size_hint: (.2, 1)
+                font_style: "H6"
+                halign: "center"
+                text: "Aqui ira el numero de multiplicaciones"
+
+        BoxLayout:
+
+            #id: enunciados
+            size_hint: (1,.30)
+            #pos_hint: {"center_x": 0.5, "top": 0.65}
+
+            canvas:
+                Color:
+                    rgba: 0, .8, 0, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+        
+        BoxLayout:
+
+            #id: enunciados
+            size_hint: (1,.15)
+            #pos_hint: {"center_x": 0.5, "top": 0.65}
+            orientation: "horizontal"
+            canvas:
+                Color:
+                    rgba: 0.3, .8, 0.8, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+            FloatLayout:
+                MDLabel:
+                    pos_hint: {"x":.2, "center_y":.5}
+                    size_hint: (.2, .2)
+                    font_style: "H5"
+                    halign: "center"
+                    text: "Resultado: "
+
+                MDTextFieldRect:
+                    id: resultado
+                    pos_hint:{"x":.5, "center_y": 0.5}
+                    size_hint:(.3, .50)
+                    hint_text:"Ingresar Valor" 
+                    halign:"center"
+                    font_style:"H6"
+
+
+        BoxLayout:
+
+            size_hint: (1,.15)
+            orientation: "horizontal"
+
+            canvas:
+                Color:
+                    rgba: 1, 1, 1, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+
+            FloatLayout:
+
+                MDFillRoundFlatButton:
+
+                    pos_hint: {"x":0.2, "center_y":.5}
+                    #size_hint: 0.3, None
+                    id: limpiar_tablas
+                    text: "Limpiar tablas"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    #md_bg_color: 0.17, 0.62, .35, 1
+                    md_bg_color: app.theme_cls.primary_color
+                    on_release: root.limpiar_tablas()
+                    
+
+                MDFillRoundFlatButton:
+                    
+                    pos_hint: {"x":.6, "center_y":.5}
+                    #size_hint: 1.0, None
+                    text: "Completar tablas"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    #md_bg_color: 0.17, 0.62, .35, 1
+                    md_bg_color: app.theme_cls.primary_color
+                    on_release: root.rellenar_tablas()
+        
+        
+        
+
+        
+            
+
+
+            
