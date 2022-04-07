@@ -22,17 +22,17 @@
 
                     pos_hint: {"x":0.05, "center_y":.5}
                     #size_hint: 0.3, None
-                    id: limpiar_tablas
+                    id: comenzar
                     text: "Comenzar"
                     theme_text_color: "Custom"
                     text_color: 1, 1, 1, 1
                     #md_bg_color: 0.17, 0.62, .35, 1
                     md_bg_color: app.theme_cls.primary_color
-                    on_release: 
+                    on_release: root.boton_comenzar()
                     
 
                 MDFillRoundFlatButton:
-                    
+                    id: errores
                     pos_hint: {"x":.2, "center_y":.5}
                     #size_hint: 1.0, None
                     text: "Errores"
@@ -40,7 +40,7 @@
                     text_color: 1, 1, 1, 1
                     #md_bg_color: 0.17, 0.62, .35, 1
                     md_bg_color: app.theme_cls.primary_color
-                    on_release: 
+                    on_release: root.boton_error()
 
                 MDLabel:
                     pos_hint: {"x": .4, "center_y": .5}
@@ -91,17 +91,18 @@
                     size: self.size
                     radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
             MDLabel:
-                id: texto_multi
+                id: multi
                 size_hint: (.2, 1)
                 font_style: "H6"
                 halign: "center"
-                text: "Aqui ira el numero de multiplicaciones"
+                text: "¿Preparad@ para repasar las tablas?"
 
         BoxLayout:
 
             #id: enunciados
             size_hint: (1,.30)
             #pos_hint: {"center_x": 0.5, "top": 0.65}
+            orientation: "vertical"
 
             canvas:
                 Color:
@@ -110,6 +111,18 @@
                     pos: self.pos
                     size: self.size
                     radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+            MDLabel:
+                id: texto_multi
+                size_hint: (1, 1)
+                font_style: "H6"
+                halign: "center"
+                #text: "Aqui ira la variable texto_mult"
+            MDLabel:
+                id: texto
+                size_hint: (1, 1)
+                font_style: "H6"
+                halign: "center"
+                #text: "Aqui ira la variable texto"
         
         BoxLayout:
 
@@ -139,6 +152,7 @@
                     hint_text:"Ingresar Valor" 
                     halign:"center"
                     font_style:"H6"
+                    
 
 
         BoxLayout:
