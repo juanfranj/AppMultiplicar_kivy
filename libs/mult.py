@@ -13,18 +13,13 @@ def comenzar(total, texto, resultado, pasar, texto_multi, mul, tablas, repaso, s
 
 def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, repaso, semaforo):
     tab = tablas_chk
-    #texto.text = "entrando en el programa de multiplicar"
-    #print(tablas_chk)
-    #tablas = [2,3,4,5]
     tablas = [i+2 for i in range(len(tablas_chk)) if tablas_chk[i] is True]
     #print(tablas)
     try:
         if repaso:
-            #print("El numero de errores es: ", numero_errores())
             num = numero_errores()
         else:
             num = int(total.text)
-        #print("numero de multiplicaciones: ", num)
     except:
         num = 0
 
@@ -36,16 +31,10 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
         try:
             a, b = numeros_random(tablas, repaso)
             texto_multi.text = (f"{a}x{b}")
-            #print(f"funcion multiplicar texto_mlti: {texto_multi} id: {id(texto_multi)}")
-            
             multi.text = (f"Nº Multiplicaciones: {num}     Multiplicaciones: {mul}")
-            #cmd = resultado.bind("<Return>",resultado.get())
-            #cmd = int(resultado.get())
             fin_cuenta = False
             while not fin_cuenta:
                 texto.text = ""
-                #continuar(pasar)
-                #print("semaforo rojo")
                 semaforo.acquire()
                 
                 if int(resultado.text) == a * b:
@@ -70,19 +59,12 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
                         texto.text = f"Lo siento te has equivocado, intentalo otra vez"
                         sleep(1)
                         error += 1
-                #pasar.set(False)
-                #print("nueva multiplicacion")
-                #resultado.hint_text = "Ingresar Valor"
-        
                    
         except:
             texto.text = "Dejate de rollo y sigue multiplicando"
             sleep(1)
-            pasar = False
-            #resultado.hint_text = "Ingresar Valor"
-
+            
     modificar_archivo()    
-    #iniciar_total()
 
     if num > 0:
         texto_multi.text = f"Errores: {errores}"
@@ -157,5 +139,3 @@ def numero_errores():
     file.close()
     return len(errores)
 
-#if __name__ == '__main__':
-#    modificar_archivo()
