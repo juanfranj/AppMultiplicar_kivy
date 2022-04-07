@@ -20,6 +20,8 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
             num = numero_errores()
         else:
             num = int(total.text)
+            if len(tablas) == 0:
+                num = 0
     except:
         num = 0
 
@@ -39,7 +41,7 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
                 
                 if int(resultado.text) == a * b:
                     #print("El resultado es: ", resultado.text)
-                    #modificar_valor(f"{a}x{b}", True)
+                    modificar_valor(f"{a}x{b}", True)
                     texto.text = "¡¡Bien!!"
                     sleep(1)
                     fin_cuenta = True
@@ -47,7 +49,7 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
                     error = 0
                  
                 else:
-                    #modificar_valor(f"{a}x{b}", False)
+                    modificar_valor(f"{a}x{b}", False)
                     path = os.getcwd()+ "\\AppMulti\\files\errores.txt"
                     escribir_fichero(f"{a}x{b}", path)
                     errores += 1

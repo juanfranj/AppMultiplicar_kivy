@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 def crear_valores():
-    path = os.getcwd()+'\\bd\\tablasMultiplicar.db'
+    path = os.getcwd()+'\\AppMulti\\bd\\tablasMultiplicar.db'
     conexion = sqlite3.connect(path)
     cursor = conexion.cursor()
     for i in range(2,11):
@@ -13,7 +13,7 @@ def crear_valores():
     conexion.close()
 
 def resetear_tabla():
-    path = os.getcwd()+'\\bd\\tablasMultiplicar.db'
+    path = os.getcwd()+'\\AppMulti\\bd\\tablasMultiplicar.db'
     conexion = sqlite3.connect(path)
     cursor = conexion.cursor()
     for i in range(2,11):
@@ -30,7 +30,7 @@ def resetear_tabla():
 
 
 def modificar_valor(valor,acierto):
-    path = os.getcwd()+'\\bd\\tablasMultiplicar.db'
+    path = os.getcwd()+'\\AppMulti\\bd\\tablasMultiplicar.db'
     conexion = sqlite3.connect(path)
     cursor = conexion.cursor()
     mul, aciertos, errores = consultar_valor(cursor, valor)
@@ -66,7 +66,7 @@ def consultar_valor(cursor, valor):
     return consulta[0], consulta[1], consulta[2]
 
 def resultados_totales():
-    path = os.getcwd()+'\\bd\\tablasMultiplicar.db'
+    path = os.getcwd()+'\\AppMulti\\bd\\tablasMultiplicar.db'
     conexion = sqlite3.connect(path)
     cursor = conexion.cursor()
     cursor.execute(
@@ -78,7 +78,7 @@ def resultados_totales():
     return consulta
 
 def consultar_resultados():
-    path = os.getcwd()+'\\bd\\tablasMultiplicar.db'
+    path = os.getcwd()+'\\AppMulti\\bd\\tablasMultiplicar.db'
     conexion = sqlite3.connect(path)
     cursor = conexion.cursor()
     cursor.execute(
@@ -88,7 +88,7 @@ def consultar_resultados():
         """
     )
     consulta = cursor.fetchone()
-    return consulta[0], consulta[1]
+    return consulta
 
 
 #if __name__ == '__main__':

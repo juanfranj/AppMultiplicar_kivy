@@ -12,10 +12,6 @@ from threading import Semaphore
 from time import sleep
 from libs.mult import comenzar
 
-
-
-        
-
 class Multiplicar(Screen):
 
     def __init__(self, **kwargs):
