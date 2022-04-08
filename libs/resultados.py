@@ -2,8 +2,9 @@ from turtle import pos
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp 
 from kivymd.uix.datatables import MDDataTable
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivy.graphics import Color, RoundedRectangle, instructions
+from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.label import MDLabel
+from kivy.graphics import Color, RoundedRectangle, Rectangle
 from kivy.metrics import dp
 
 from bd.funcionesBD import resultados_totales, consultar_resultados
@@ -12,7 +13,6 @@ class Resultados(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.app = MDApp.get_running_app()
-        self.inicio =  self.children[:]
     
     def tabla_resultados(self):
         #self.clear_canvas()
@@ -20,7 +20,7 @@ class Resultados(Screen):
         self.values = resultados_totales()
         self.resultados = MDDataTable(
             size_hint = (1, 1),
-            pos_hint = {"center_x":0.5, "top":1},
+            pos_hint = {"x":0, "top":1},
             use_pagination=True,
             check = False,
             rows_num = 8,
@@ -41,8 +41,8 @@ class Resultados(Screen):
         self.values = consultar_resultados()
         self.total = sum(self.values)
         self.resultados = MDDataTable(
-            size = self.size,
-            #pos_hint = {"x":0.5, "top":1},
+            size_hint = (1, 1),
+            pos_hint = {"x":0, "top":1},
             use_pagination=True,
             check = False,
             rows_num = 8,
@@ -58,9 +58,10 @@ class Resultados(Screen):
             ]
         )
         self.estadistica.add_widget(self.resultados)
+    
 
 
-    def clear_canvas(self):
+    def clear_canvas_tablas(self):
         self.clear_widgets()
         base=Resultados()
         self.add_widget(base)
@@ -68,3 +69,7 @@ class Resultados(Screen):
 
     def on_pre_enter(self, *args):
         self.app.title = "Resultados"
+    
+    def update_rect(self, *args):
+        self.rect.pos = self.pos
+        self.rect.size = self.size

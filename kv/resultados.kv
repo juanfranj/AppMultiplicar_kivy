@@ -3,12 +3,22 @@
         spacing: 10
         padding: 10
         orientation: "vertical"
+        
+        MDFloatLayout:
 
-        MDBoxLayout:
             id: tablas
+            size_hint: 1,1
             size_hint: 1,.85
             #adaptive_height: True
             md_bg_color:  0, .4, 0, 0.1
+            #orientation: "vertical"
+            canvas:
+                Color:
+                    rgba:  0, .4, 0, 0.1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
 
         BoxLayout:
             padding: 20
@@ -31,7 +41,7 @@
                 theme_text_color: "Custom"
                 text_color: 1, 1, 1, 1
                 md_bg_color: app.theme_cls.primary_color
-                on_release: root.clear_canvas()
+                on_release: root.clear_canvas_tablas()
 
             MDFillRoundFlatButton:
 
@@ -59,11 +69,9 @@
 
                 pos_hint: {"x":1, "center_y":.5}
                 #size_hint: 0.3, None
-                id: reiniciar
                 text: "Reiniciar"
                 theme_text_color: "Custom"
                 text_color: 1, 1, 1, 1
                 md_bg_color: app.theme_cls.primary_color
                 on_release:
-
 

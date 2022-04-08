@@ -1,0 +1,34 @@
+<Reiniciar>
+
+    FloatLayout:
+
+        size_hint: 1,1
+        size_hint: 1,.85
+        md_bg_color:  0, .4, 0, 0.1
+
+        MDLabel:
+            text:"¿Estas segur@ que quieres resiniciar los resultados?\nSe perderan todos los datos"
+            #size_hint= (.3, .3),
+            pos_hint: {'center_x': 0.5,'center_y': 0.75}
+            halign: "center"
+            font_style:"H6"
+
+        MDFillRoundFlatButton:
+
+            pos_hint: {"center_x":0.35, "center_y":.4}
+            #size_hint: 0.3, None,
+            text: "Si"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            md_bg_color: self.app.theme_cls.primary_color
+        
+        MDFillRoundFlatButton:
+
+                pos_hint: {"center_x":0.65, "center_y":.4}
+                #size_hint: 0.3, None,
+                text: "No"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                md_bg_color: self.app.theme_cls.primary_color
+                on_release:
+                
