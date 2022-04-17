@@ -9,4 +9,4 @@ class Inicio(Screen):
 
 
     def on_pre_enter(self, *args):
-        self.app.title = "App Multiplicar"
+        self.app.title = "App Multiplicar V0.1"

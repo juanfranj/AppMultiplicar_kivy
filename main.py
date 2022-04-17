@@ -1,5 +1,6 @@
 from kivymd.app import MDApp
 from kivy.lang import Builder
+#import os
 
 
 
@@ -10,6 +11,8 @@ from libs.ajustes import Ajustes
 from libs.reiniciar import Reiniciar_BaseDatos
 
 #Clock.max_iteration = 1000 
+#path_global = os.getcwd()
+#print(path_global)
 class AppMulti(MDApp):
     
     

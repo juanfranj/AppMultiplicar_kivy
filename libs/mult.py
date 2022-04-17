@@ -1,3 +1,4 @@
+from importlib.resources import path
 from time import sleep
 from random import randint, shuffle
 from bd.funcionesBD import *
@@ -50,7 +51,7 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
                  
                 else:
                     modificar_valor(f"{a}x{b}", False)
-                    path = os.getcwd()+ "\\AppMulti\\files\errores.txt"
+                    path = os.getcwd()+ "\\files\errores.txt"
                     escribir_fichero(f"{a}x{b}", path)
                     errores += 1
                     if error == 1:
@@ -99,7 +100,7 @@ def numeros_random(tablas, repaso):
     return a, b
 
 def seleccionar_error():
-    path = os.getcwd()+ "\\AppMulti\\files\errores.txt"
+    path = os.getcwd()+ "\\files\errores.txt"
     #print("Buscando error en: ", path)
     file = open(path, "r")
     errores = file.read().split("//")[:-1]
@@ -123,7 +124,7 @@ def escribir_fichero(string, path):
     file.close()
 
 def modificar_archivo():
-    path = os.getcwd()+ "\\AppMulti\\files\errores.txt"
+    path = os.getcwd()+ "\\files\errores.txt"
     #print("error path: ", path)
     file = open(path, "r")
     errores_brutos = file.read().split("//")[:-1]
@@ -135,7 +136,7 @@ def modificar_archivo():
     file.close()
 
 def numero_errores():
-    path = os.getcwd()+ "\\AppMulti\\files\errores.txt"
+    path = os.getcwd()+ "\\files\errores.txt"
     file = open(path, "r")
     errores = file.read().split("//")[:-1]
     file.close()
