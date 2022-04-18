@@ -1,11 +1,11 @@
 <Multiplicar>
     BoxLayout:
-        padding: 10
-        spacing: 10
+        padding: 5
+        spacing: 5
         orientation: "vertical"
 
         BoxLayout:
-            size_hint: (1,.15)
+            size_hint: (1,.2)
             orientation: "horizontal"
 
             canvas:
@@ -16,94 +16,64 @@
                     size: self.size
                     radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
 
-            FloatLayout:
+            BoxLayout:
+                orientation: "vertical"
 
-                MDFillRoundFlatButton:
+                BoxLayout:
 
-                    pos_hint: {"x":0.05, "center_y":.5}
-                    #size_hint: 0.3, None
-                    id: comenzar
-                    text: "Comenzar"
-                    theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-                    #md_bg_color: 0.17, 0.62, .35, 1
-                    md_bg_color: app.theme_cls.primary_color
-                    on_release: root.boton_comenzar()
-                    
+                    FloatLayout:
 
-                MDFillRoundFlatButton:
+                        MDFillRoundFlatButton:
 
-                    id: errores
-                    pos_hint: {"x":.2, "center_y":.5}
-                    #size_hint: 1.0, None
-                    text: "Errores"
-                    theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-                    #md_bg_color: 0.17, 0.62, .35, 1
-                    md_bg_color: app.theme_cls.primary_color
-                    on_release: root.boton_error()
+                            pos_hint: {"x":0.2, "center_y":.5}
+                            #size_hint: 0.3, None
+                            id: comenzar
+                            text: "Comenzar"
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            #md_bg_color: 0.17, 0.62, .35, 1
+                            md_bg_color: app.theme_cls.primary_color
+                            on_release: root.boton_comenzar()
+                            
 
-                MDLabel:
+                        MDFillRoundFlatButton:
 
-                    pos_hint: {"x": .4, "center_y": .5}
-                    size_hint: (.3, .5)
-                    font_style: "H6"
-                    halign: "center"
-                    text: "Nº multiplicaciones:"
+                            id: errores
+                            pos_hint: {"x":.6, "center_y":.5}
+                            #size_hint: 1.0, None
+                            text: "Errores"
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            #md_bg_color: 0.17, 0.62, .35, 1
+                            md_bg_color: app.theme_cls.primary_color
+                            on_release: root.boton_error()
 
-                MDTextFieldRect:
-                
-                    id: total
-                    pos_hint:{"x":.7, "center_y": 0.5}
-                    size_hint:(.15, .5)
-                    hint_text:"Ingresar Valor" 
-                    halign:"center"
-                    font_style:"H6"
-        BoxLayout:
-            size_hint: (1, .25)
-            # pos_hint: {"center_x": 0.5, "top": 0.97}
-            canvas:
-                Color:
-                    rgba: 0, .4, 0, 0.1
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+                BoxLayout:
+
+                    FloatLayout:
+
+                        MDLabel:
+
+                            pos_hint: {"x": .2, "center_y": .5}
+                            size_hint: (.4, 1)
+                            font_style: "Subtitle1"
+                            halign: "center"
+                            text: "Nº multiplicaciones:"
+
+                        MDTextFieldRect:
+                        
+                            id: total
+                            pos_hint:{"x":.65, "center_y": 0.5}
+                            size_hint:(.20, .5)
+                            input_type: "number" 
+                            halign:"center"
+                            font_style:"H6"
             
-            MDLabel:
-                #pos_hint: {"left": .2, "top": .5}
-                size_hint: (.2, 1)
-                font_style: "H5"
-                halign: "center"
-                text: "Tablas:"
-            GridLayout:
-                id: tablas
-                size_hint: (.8, 1)
-                rows: 1
-                #orientation: "lr-tb"
-                #pos_hint: {"x": 0, "top": .95}
-
-        BoxLayout:
-            size_hint: (1,.15)
-
-            canvas:
-                Color:
-                    rgba: 0.16, .7, 0.38, 0.1
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
-            MDLabel:
-                id: multi
-                size_hint: (.2, 1)
-                font_style: "H6"
-                halign: "center"
-                text: "¿Preparad@ para repasar las tablas?"
 
         BoxLayout:
 
             #id: enunciados
-            size_hint: (1,.30)
+            size_hint: (1,.35)
             #pos_hint: {"center_x": 0.5, "top": 0.65}
             orientation: "vertical"
 
@@ -130,7 +100,7 @@
         BoxLayout:
 
             #id: enunciados
-            size_hint: (1,.15)
+            size_hint: (1,.1)
             #pos_hint: {"center_x": 0.5, "top": 0.65}
             orientation: "horizontal"
             canvas:
@@ -144,23 +114,66 @@
                 MDLabel:
                     pos_hint: {"x":.2, "center_y":.5}
                     size_hint: (.2, .2)
-                    font_style: "H5"
+                    font_style: "Subtitle1"
                     halign: "center"
                     text: "Resultado: "
 
                 MDTextFieldRect:
                     id: resultado
                     pos_hint:{"x":.5, "center_y": 0.5}
-                    size_hint:(.3, .50)
-                    hint_text:"Ingresar Valor" 
+                    size_hint:(.3, .5)
+                    input_type: "number"
                     halign:"center"
                     font_style:"H6"
-                    
+        BoxLayout:
+            size_hint: (1,.15)
 
+            canvas:
+                Color:
+                    rgba: 0.16, .7, 0.38, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+            MDLabel:
+                id: multi
+                size_hint: (.2, 1)
+                font_style: "H6"
+                halign: "center"
+                text: "¿Preparad@ para repasar las tablas?"            
+
+        
+        BoxLayout:
+            size_hint: (1, .2)
+            #orientation: "vertical"
+            # pos_hint: {"center_x": 0.5, "top": 0.97}
+            canvas:
+                Color:
+                    rgba: 0, .4, 0, 0.1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+            
+            FloatLayout:
+
+                MDLabel:
+                    size_hint: (1, .15)
+                    pos_hint: {"x": .05, "center_y": .8}
+                    font_style: "H6"
+                    halign: "left"
+                    text: "Tablas:"
+                GridLayout:
+                    id: tablas
+                    size_hint: (1, .85)
+                    pos_hint: {"x": .03, "center_y": .4}
+                    rows: 1
+                    halign: "center"
+                          
 
         BoxLayout:
 
-            size_hint: (1,.15)
+            size_hint: (1,.1)
             orientation: "horizontal"
 
             canvas:

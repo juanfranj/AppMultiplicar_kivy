@@ -25,9 +25,9 @@ class Resultados(Screen):
             check = False,
             rows_num = 8,
             column_data=[
-                    ("MULTIPLICACIONES", dp(50)),
-                    ("ACIERTOS", dp(30)),
-                    ("ERRORES", dp(30)),
+                    ("MULTIPLICACIONES", dp(32)),
+                    ("ACIERTOS", dp(20)),
+                    ("ERRORES", dp(20)),
                 ],
             row_data=[
                 resultados
@@ -40,23 +40,43 @@ class Resultados(Screen):
         self.estadistica = self.ids["tablas"]
         self.values = consultar_resultados()
         self.total = sum(self.values)
-        self.resultados = MDDataTable(
-            size_hint = (1, 1),
-            pos_hint = {"x":0, "top":1},
-            use_pagination=True,
-            check = False,
-            rows_num = 8,
-            column_data=[
-                    ("ESTADISTICAS", dp(50)),
-                    ("TOTAL", dp(30)),
-                    ("(%)", dp(30)),
-                ],
-            row_data=[
-                ("Multiplicaciones", self.total, ""),
-                ("Aciertos", self.values[0], f"{round((self.values[0]/self.total)*100, 1)} %"),
-                ("Errores", self.values[1], f"{round((self.values[1]/self.total)*100, 1)} %")
-            ]
-        )
+        try:
+            self.resultados = MDDataTable(
+                size_hint = (1, 1),
+                pos_hint = {"x":0, "top":1},
+                use_pagination=True,
+                check = False,
+                rows_num = 8,
+                column_data=[
+                        ("ESTADISTICAS", dp(32)),
+                        ("TOTAL", dp(20)),
+                        ("(%)", dp(20)),
+                    ],
+                row_data=[
+                    ("Multiplicaciones", self.total, ""),
+                    ("Aciertos", self.values[0], f"{round((self.values[0]/self.total)*100, 1)} %"),
+                    ("Errores", self.values[1], f"{round((self.values[1]/self.total)*100, 1)} %")
+                ]
+            )
+        except:
+            self.resultados = MDDataTable(
+                size_hint = (1, 1),
+                pos_hint = {"x":0, "top":1},
+                use_pagination=True,
+                check = False,
+                rows_num = 8,
+                column_data=[
+                        ("ESTADISTICAS", dp(32)),
+                        ("TOTAL", dp(20)),
+                        ("(%)", dp(20)),
+                    ],
+                row_data=[
+                    ("Multiplicaciones", self.total, ""),
+                    ("Aciertos", self.values[0], f"{round((self.values[0]/1)*100, 1)} %"),
+                    ("Errores", self.values[1], f"{round((self.values[1]/1)*100, 1)} %")
+                ]
+            )
+
         self.estadistica.add_widget(self.resultados)
     
 

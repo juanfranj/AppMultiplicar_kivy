@@ -1,3 +1,4 @@
+from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivy.lang import Builder
 #import os
@@ -18,6 +19,7 @@ class AppMulti(MDApp):
     
     
     def build(self):
+        Window.size = (480,720)
         self.title = "AppMultiplicar"
         self.theme_cls.primary_palette = "Teal"
 
