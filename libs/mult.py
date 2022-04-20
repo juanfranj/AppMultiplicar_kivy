@@ -7,12 +7,25 @@ from threading import Thread
 
 
 
-def comenzar(total, texto, resultado, pasar, texto_multi, mul, tablas, repaso, semaforo):
-    t1 = Thread(target =   multiplicar, args = (total,texto, resultado, pasar, texto_multi, mul, tablas, repaso, semaforo), daemon = True)
-    t1.start()
+
+def comenzar(total, texto, resultado, pasar, texto_multi, mul, tablas, repaso, semaforo, hilos):
+    if len(hilos) == 0:
+        #print("No existen hilos abiertos")
+        t1 = Thread(target =   multiplicar, args = (total,texto, resultado, pasar, texto_multi, mul, tablas, repaso, semaforo, hilos), daemon = True)
+        t1.start()
+        hilos.append(t1)
+    """ else:
+        print(f"hay {len(hilos)} abiertos no se inicializa el nuevo")
+        for hilo in hilos:
+            if hilo.is_alive():
+                print(f"El hilo {hilo.name} esta vivo")
+            else:
+                print(f"El hilo {hilo.name} NO esta vivo") """
+   
+    #t1.start()
     
 
-def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, repaso, semaforo):
+def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, repaso, semaforo, hilos):
     tab = tablas_chk
     tablas = [i+2 for i in range(len(tablas_chk)) if tablas_chk[i] is True]
     #print(tablas)
@@ -33,15 +46,17 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
     while mul <= num:
         try:
             a, b = numeros_random(tablas, repaso)
+            #print(f"{a}x{b}")
+            texto_multi.font_size = "80"
             texto_multi.text = (f"{a}x{b}")
-            multi.text = (f"Nº Multiplicaciones: {num}     Multiplicaciones: {mul}")
+            multi.text = (f"Totales: {num}     Realizadas: {mul}")
             fin_cuenta = False
             while not fin_cuenta:
                 texto.text = ""
                 semaforo.acquire()
-                
+                #print(f"Despues del semaforo, resultado: {resultado.text}, {type(resultado.text)}")
                 if int(resultado.text) == a * b:
-                    #print("El resultado es: ", resultado.text)
+                    #print("El resultado es correcto: ", resultado.text)
                     modificar_valor(f"{a}x{b}", True)
                     texto.text = "¡¡Bien!!"
                     sleep(1)
@@ -50,6 +65,7 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
                     error = 0
                  
                 else:
+                    #print("El resultado es erroneo: ", resultado.text)
                     modificar_valor(f"{a}x{b}", False)
                     path = os.getcwd()+ "\\files\errores.txt"
                     escribir_fichero(f"{a}x{b}", path)
@@ -68,8 +84,12 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
             sleep(1)
             
     modificar_archivo()    
+    texto_multi.font_size = "40"
+    texto.font_size = "40"
+
 
     if num > 0:
+        
         texto_multi.text = f"Errores: {errores}"
         texto.text = f"Multiplicaciones: {num}"
     else:
@@ -83,9 +103,11 @@ def multiplicar(total, texto, resultado, pasar, texto_multi, multi, tablas_chk, 
             multi.text = ""
     
     sleep(3)
+    texto_multi.font_style = "H6"
     texto_multi.text = f" "
     multi.text = "¿Preparad@ para repasar las tablas?"
     texto.text = f" "
+    hilos.pop()
 
 
 def numeros_random(tablas, repaso):
@@ -107,7 +129,7 @@ def seleccionar_error():
     #print(errores)
     file.close()
     if len(errores) == 0:
-        return "a", "b"
+        return 3, 3
     else:
         nums = errores[0].split("x")
         #print(nums)

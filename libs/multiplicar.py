@@ -20,7 +20,7 @@ class Multiplicar(Screen):
         self.app = MDApp.get_running_app()
         self.selecciones = []
         self.semaforo = Semaphore(0)
-        #self.pasar = False
+        self.hilos = []
         
     
     def _on_keyboard_down(self, instance, keyboard, keycode, text, modifiers):
@@ -30,7 +30,7 @@ class Multiplicar(Screen):
         if self.tecla.focus and (keycode == 40 or keycode == 88):
             self.pulsar_enter
             self.tecla.text = ""
-            self.tecla.hint_text = "Ingresa Valor"
+            #self.tecla.hint_text = "Ingresa Valor"
 
         if self.tecla2.focus and (keycode == 40 or keycode == 88):
             self.boton_comenzar()
@@ -86,12 +86,12 @@ class Multiplicar(Screen):
         self.multi = self.ids["multi"]
         self.estados = self.seleccion_estado()
         self.pasar = False
-        self.texto.text = f"Hola Carmen, ¿preparada para repasar las tablas?"
+        #self.texto.text = f"Hola Carmen, ¿preparada para repasar las tablas?"
         #self.texto_multi.text = f"variable texto_multi: resultado = {self.resultado.text}"
         #self.multi.text = f"Probando la variable multi: total = {self.total.text}"
         #print(f"funcion multiplicar texto_mlti: {self.texto_multi} id: {id(self.texto_multi)}")
         #print(f"funcion boton_comenzar self.pasar: {self.pasar} id: {id(self.pasar)}")
-        comenzar(self.total, self.texto, self.resultado, self.pasar, self.texto_multi, self.multi, self.estados, False, self.semaforo)
+        comenzar(self.total, self.texto, self.resultado, self.pasar, self.texto_multi, self.multi, self.estados, False, self.semaforo, self.hilos)
         self.iniciar_total()
     
     def boton_error(self):
@@ -107,7 +107,7 @@ class Multiplicar(Screen):
         #self.multi.text = f"Probando la variable multi: total = {self.total.text}"
         #print(f"funcion multiplicar texto_mlti: {self.texto_multi} id: {id(self.texto_multi)}")
         #print(f"funcion boton_comenzar self.pasar: {self.pasar} id: {id(self.pasar)}")
-        comenzar(self.total, self.texto, self.resultado, self.pasar, self.texto_multi, self.multi, self.estados, True, self.semaforo)
+        comenzar(self.total, self.texto, self.resultado, self.pasar, self.texto_multi, self.multi, self.estados, True, self.semaforo, self.hilos)
         self.iniciar_total()
         
 
