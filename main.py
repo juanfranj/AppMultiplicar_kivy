@@ -10,6 +10,7 @@ from libs.multiplicar import Multiplicar
 from libs.resultados import Resultados
 from libs.ajustes import Ajustes
 from libs.reiniciar import Reiniciar_BaseDatos
+from libs.sumar import Sumar
 
 #Clock.max_iteration = 1000 
 #path_global = os.getcwd()

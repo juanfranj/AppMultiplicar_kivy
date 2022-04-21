@@ -2,6 +2,7 @@
 #:include kv/inicio.kv
 #:include kv/resultados.kv
 #:include kv/ajustes.kv
+#:include kv/sumar.kv
 ##:include kv/reiniciar.kv
 
 MDNavigationLayout:
@@ -35,6 +36,9 @@ MDNavigationLayout:
                     Ajustes:
                         id: ajustes
                         name: "ajustes"
+                    Sumar:
+                        id: sumar
+                        name: "sumar"
                     #Reiniciar:
                         #id: reiniciar
                         #name: "reiniciar"
@@ -72,6 +76,15 @@ MDNavigationLayout:
                             nav_drawer.set_state()
                         IconLeftWidget:
                             icon: "multiplication-box"
+                    
+                    OneLineIconListItem:
+                        text: "Sumar"
+                        # Aquí va lo que queremos ejecutar cuando se suelta el botón
+                        on_release:
+                            screen_manager.current = "sumar"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "plus-box"
                     
                     OneLineIconListItem:
                         text: "Resultados"
