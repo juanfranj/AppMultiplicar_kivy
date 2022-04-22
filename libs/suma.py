@@ -1,42 +1,37 @@
 from random import randint
 
-def suma(numeros):
+def suma(numeros, digitos):
     numeros, matriz, num_col, num_fil = devolver_datos(numeros)
     numeros = [devolver_numero(numero, num_col) for numero in numeros]
     lista = devolver_lista(numeros)
     matriz = devolver_matriz(num_fil, num_col, lista, matriz)
     restos = devolver_restos(matriz, num_col, num_fil)
     matriz = actualizar_matriz(restos, matriz)
-    imprimir_pregunta(matriz, num_fil)
-    imprimir_resultado(matriz, num_fil)
+    matriz, num_fil = incluir_mas(matriz, num_fil, num_col, digitos)
+    #imprimir_pregunta(matriz, num_fil)
+    #imprimir_resultado(matriz, num_fil)
+    return matriz, num_fil, num_col
+
+
+def incluir_mas(matriz, num_fil, num_col, digitos):
+    fila = ['-' for i in range(0,num_col)]
+    matriz[num_fil-2][5-digitos] = '+'
+    matriz.insert(num_fil-1, fila)
+    num_fil += 1
+    return matriz, num_fil
+
 
 def imprimir_pregunta(matriz, num_fil):
-    j = 0
     print("Calcular:\n")
+    for fila in matriz[1:-1][:]:
+        print(f"  {fila}")
+        
 
-    for fila in matriz[1:][:]:
-        if j == (num_fil-3):
-            print(f"+ {fila}")
-            linea = "------" * len(fila) + "--"
-            print(linea)
-        elif j == (num_fil-2):
-            print("")
-        else:
-            print(f"  {fila}")
-        j += 1
-
-def imprimir_resultado(matriz, num_fil):
-    j = 0
+def imprimir_resultado(matriz, num_fil): 
     print("Resultado:\n")
     for fila in matriz:
-        if j == (num_fil-2):
-            print(f"+ {fila}")
-            linea = "------" * len(fila) + "--"
-            print(linea)
-        else:
-            print(f"  {fila}")
-        j += 1
-
+        print(f"  {fila}")
+        
 def actualizar_matriz(restos,matriz):
     for i in range(0, len(restos)):
         matriz[0][i] = restos[i]
@@ -46,7 +41,7 @@ def devolver_restos(matriz, num_col, num_fil):
     columnas = []
     restos = []
     for i in range(0,num_col):
-        columna = [int(fila[i]) for fila in matriz[1::][:-1]]
+        columna = [int(fila[i]) for fila in matriz[1::][:-1] if fila[i] != '-']
         #print(columna)
         columnas.append(columna)
         restos.append(sum(columna))
@@ -75,13 +70,14 @@ def  devolver_matriz(num_fil, num_col, lista, matriz):
 def devolver_datos(numeros):
     numeros.append(sum(numeros))
     numeros = [str(num) for num in numeros]
-    num_col = max([len(str(digito)) for digito in numeros])
+    #num_col = max([len(str(digito)) for digito in numeros])
+    num_col = 6
     num_fil = len(numeros)+1
     matriz = [[None] * num_col for i in range(num_fil)]
     return numeros, matriz, num_col, num_fil
 
 def devolver_numero(num,max):
-    return "0" * (max - len(num)) + num
+    return "-" * (max - len(num)) + num
 
 def devolver_lista(numeros):
     texto = ""
@@ -94,7 +90,7 @@ def devolver_sumandos(sumandos, digitos):
     maximo = [0, 9, 99, 999, 9999]
     numeros = [randint(1, maximo[digitos]) for i in range(sumandos)]
     return numeros
-
+'''
 if __name__ == '__main__':
     # maximo 5
     sumandos = 2
@@ -102,4 +98,5 @@ if __name__ == '__main__':
     digitos = 3
     numeros = devolver_sumandos(sumandos, digitos)
     suma(numeros)
+'''
     

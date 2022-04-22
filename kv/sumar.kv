@@ -1,6 +1,7 @@
+
 <Sumar>
     BoxLayout:
-        padding: 5
+        #padding: 5
         spacing: 5
         orientation: "vertical"
 
@@ -36,7 +37,7 @@
                     id: sumandos
                     pos_hint:{"center_x":.35, "center_y": 0.5}
                     size_hint:(.15, .45)
-                    hint_text: "3"
+                    hint_text: "[2-5]"
                     input_type: "number"
                     font_style:"H6"
                     halign: "center"
@@ -51,7 +52,7 @@
                 MDTextFieldRect:
                     id: digitos
                     pos_hint:{"center_x":.68, "center_y": 0.5}
-                    hint_text: "3"
+                    hint_text: "[1-4]"
                     size_hint:(.15, .45)
                     input_type: "number"
                     font_style:"H6"
@@ -67,16 +68,49 @@
                     text_color: 1, 1, 1, 1
                     md_bg_color: 0.3, 0.3, .3, 1
                     font_style: "H6"
-                    on_release: 
+                    on_release: root.mostrar_suma()
         
         BoxLayout:
             size_hint: (1,.8)
-            orientation: "horizontal"
+            orientation: "vertical"
             
             canvas:
                 Color:
                     rgba: .0, .39, .0, 1
-                RoundedRectangle:
+                Rectangle:
                     pos: self.pos
                     size: self.size
-                    radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+                    #radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+            BoxLayout:
+                size_hint: (1,.1)
+                MDLabel:
+                    id: informacion
+                    pos_hint: {"center_x":.52, "center_y":.5}
+                    size_hint: (.3, .5)
+                    font_style: "H6"
+                    halign: "center"
+                    text: "Sumandos: Mínimos: 2 -- Máximos: 5\nDígitos: Mínimos: 1 -- Máximos: 4"
+                        
+            BoxLayout:
+                size_hint: (1,.9)
+                orientation: "vertical"
+                FloatLayout:
+                    id: pizarra
+                    GridLayout:
+                        id:grid
+                        size_hint: (1, .9)
+                        pos_hint: {"x":.0, "y":.1}
+                        
+                    
+                    MDFillRoundFlatButton:
+                        id: boton_calcular
+                        size_hint: (.4, .1)
+                        pos_hint: {"center_x":0.5, "center_y":.06}
+                        text: "Resultado"
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: 0.3, 0.3, .3, 1
+                        font_style: "H6"
+                        on_release: root.mostrar_resultado()
+                    
+        
