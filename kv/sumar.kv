@@ -82,17 +82,17 @@
                     size: self.size
                     #radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
             BoxLayout:
-                size_hint: (1,.1)
+                size_hint: (1,.05)
                 MDLabel:
                     id: informacion
                     pos_hint: {"center_x":.52, "center_y":.5}
                     size_hint: (.3, .5)
                     font_style: "H6"
                     halign: "center"
-                    text: "Sumandos: Mínimos: 2 -- Máximos: 5\nDígitos: Mínimos: 1 -- Máximos: 4"
+                    text: ""
                         
             BoxLayout:
-                size_hint: (1,.9)
+                size_hint: (1,.95)
                 orientation: "vertical"
                 FloatLayout:
                     id: pizarra
@@ -105,12 +105,23 @@
                     MDFillRoundFlatButton:
                         id: boton_calcular
                         size_hint: (.4, .1)
-                        pos_hint: {"center_x":0.5, "center_y":.06}
+                        pos_hint: {"center_x":0.25, "center_y":.06}
                         text: "Resultado"
                         theme_text_color: "Custom"
                         text_color: 1, 1, 1, 1
                         md_bg_color: 0.3, 0.3, .3, 1
                         font_style: "H6"
                         on_release: root.mostrar_resultado()
+                    
+                    MDFillRoundFlatButton:
+                        id: boton_comprobar
+                        size_hint: (.4, .1)
+                        pos_hint: {"center_x":0.75, "center_y":.06}
+                        text: "Comprobar"
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+                        md_bg_color: 0.3, 0.3, .3, 1
+                        font_style: "H6"
+                        on_release:
                     
         
