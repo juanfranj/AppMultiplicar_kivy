@@ -15,7 +15,7 @@ def suma(numeros, digitos):
 
 def incluir_mas(matriz, num_fil, num_col, digitos):
     fila = ['-' for i in range(0,num_col)]
-    matriz[num_fil-2][5-digitos] = '+'
+    matriz[num_fil-2][7-digitos] = '+'
     matriz.insert(num_fil-1, fila)
     num_fil += 1
     return matriz, num_fil
@@ -71,7 +71,7 @@ def devolver_datos(numeros):
     numeros.append(sum(numeros))
     numeros = [str(num) for num in numeros]
     #num_col = max([len(str(digito)) for digito in numeros])
-    num_col = 6
+    num_col = 8
     num_fil = len(numeros)+1
     matriz = [[None] * num_col for i in range(num_fil)]
     return numeros, matriz, num_col, num_fil

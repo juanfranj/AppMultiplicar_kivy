@@ -20,7 +20,7 @@ class AppMulti(MDApp):
     
     
     def build(self):
-        Window.size = (470,720)
+        Window.size = (460,720)
         self.title = "AppMultiplicar"
         self.theme_cls.primary_palette = "Teal"
 

@@ -2,6 +2,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
+from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDFillRoundFlatButton
 from kivymd.uix.textfield import MDTextField
  
@@ -20,10 +21,6 @@ class Sumar(Screen):
         self.app = MDApp.get_running_app()
         self.celdas = []
 
-        
-        
- 
-
     def on_pre_enter(self, *args):
         self.app.title = "Sumar"
 
@@ -39,8 +36,8 @@ class Sumar(Screen):
         self.matriz, self.num_fil, self.num_col = suma(self.numeros, self.int_digitos)
         
         self.grid = self.ids["grid"]
-        self.grid.cols = 6
-        self.grid.rows = 8
+        self.grid.cols = 8
+        self.grid.rows = 12
         
         
             
@@ -93,10 +90,11 @@ class Sumar(Screen):
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
-                elif i == self.num_fil-2 and j >= (5-mas):
-                    self.texto = Label(text = f"____________")
+                elif i == self.num_fil-2 and j >= (7-mas):
+                    self.texto = Label(text = f"______")
                     self.texto.font_size = "40"
                     #self.texto.size_hint = (1., .5)
+                    #self.texto.height = "20"
                     #self.texto.valign = "top"
                     #self.texto.halign = "center"
                     self.celdas.append(self.texto)
@@ -109,7 +107,7 @@ class Sumar(Screen):
 
         comenzar =  self.num_col * self.num_fil
         #print("Comenzando en blanco: ", comenzar)
-        for celda in range(comenzar, 48):
+        for celda in range(comenzar, 96):
             self.texto = Label(text = f"")
             self.celdas.append(self.texto)
             self.grid.add_widget(self.texto)
@@ -118,7 +116,7 @@ class Sumar(Screen):
         #print("el numero de filas es: ", self.num_fil)
         for i in range(0,self.num_fil):
             for j in range(0,self.num_col):
-                if (i == 0 and j >= (5-mas)) or (i == self.num_fil-1 and j >= (5-mas)):
+                if (i == 0 and j >= (7-mas)) or (i == self.num_fil-1 and j >= (7-mas)):
                     #self.texto = Label(text = f"")
                     self.texto = MDTextField(
                         #hint_text = "1..9",
@@ -141,12 +139,9 @@ class Sumar(Screen):
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
-                elif i == self.num_fil-2 and j >= (5-mas):
-                    self.texto = Label(text = f"____________")
+                elif i == self.num_fil-2 and j >= (7-mas):
+                    self.texto = Label(text = f"_____")
                     self.texto.font_size = "40"
-                    #self.texto.size_hint = (1., .5)
-                    #self.texto.valign = "top"
-                    #self.texto.halign = "center"
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
@@ -157,8 +152,8 @@ class Sumar(Screen):
 
         comenzar =  self.num_col * self.num_fil
         #print("Comenzando en blanco: ", comenzar)
-        for celda in range(comenzar, 48):
-            self.texto = Label(text = f"")
+        for celda in range(comenzar, 96):
+            self.texto = Label(text = f" ")
             self.celdas.append(self.texto)
             self.grid.add_widget(self.texto)
     
