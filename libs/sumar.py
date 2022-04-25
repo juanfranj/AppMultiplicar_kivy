@@ -4,7 +4,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDFillRoundFlatButton
-from kivymd.uix.textfield import MDTextField
+from kivymd.uix.textfield import MDTextField, MDTextFieldRound
  
 
 from kivymd.app import MDApp
@@ -20,6 +20,8 @@ class Sumar(Screen):
         super().__init__(**kwargs)
         self.app = MDApp.get_running_app()
         self.celdas = []
+        self.resultados = []
+        self.restos = []
 
     def on_pre_enter(self, *args):
         self.app.title = "Sumar"
@@ -39,13 +41,12 @@ class Sumar(Screen):
         self.grid.cols = 8
         self.grid.rows = 12
         
-        
             
         self.escribir_sumandos(self.int_digitos)
         
         #print(f"El numero de celdas es: {len(self.celdas)}")
         #imprimir_pregunta(self.matriz, self.num_fil)
-        #imprimir_resultado(self.matriz, self.num_fil)
+        imprimir_resultado(self.matriz, self.num_fil)
         self.texto_ayuda.text = f"SUMAR"  
         #self.texto_ayuda.haling = "center"           
     
@@ -70,6 +71,8 @@ class Sumar(Screen):
             for celda in self.celdas:
                 self.grid.remove_widget(celda)
             self.celdas = []
+            self.resultados = []
+            self.restos = []
            
             
 
@@ -119,34 +122,40 @@ class Sumar(Screen):
                 if (i == 0 and j >= (7-mas)) or (i == self.num_fil-1 and j >= (7-mas)):
                     #self.texto = Label(text = f"")
                     self.texto = MDTextField(
-                        #hint_text = "1..9",
+                        #normal_color = (1.0, 1.0, 1.0, 1),
+                        #active_color = (1.0, 1.0, 1.0, 1),
                         input_type = "number",
                         halign ="center",
-                        #font_size = "25",
-                        #color_mode = 'custom',
-                        text_color = (1.0, 1.0, 1.0, 1)
-                        #foreground_color = (.0, .0, .0, 1)
+                        text_color = (1.0, 1.0, 1.0, 1),
+                        #mode = "fill",
+                        #color_mode = "custom",
+                        #fill_color = (1, 1, 1, 1),
+                        #line_color_normal = (1.0, 1.0, 1.0, 1)
                     )
                     if i == 0:
                         self.texto.font_size = '25'
+                        self.restos.append(self.texto)
                     else:
                         self.texto.font_size = '35'
+                        self.resultados.append(self.texto)
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
                 elif self.matriz[i][j] != '-' and i != self.num_fil-2:
                     self.texto = Label(text = f"{self.matriz[i][j]}", font_size = "35")
+                    #self.texto = MDLabel(text = f"{self.matriz[i][j]}", font_style = "H6", theme_text_color = "Custom", text_color = (1, 1, 1, 1))
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
                 elif i == self.num_fil-2 and j >= (7-mas):
-                    self.texto = Label(text = f"_____")
-                    self.texto.font_size = "40"
+                    self.texto = Label(text = f"_____", font_size = "40")
+                    #self.texto = MDLabel(text = f"_____________", font_style = "H6", theme_text_color = "Custom", text_color = (1, 1, 1, 1))
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
                 else:
-                    self.texto = Label(text = f"")
+                    #self.texto = Label(text = f"")
+                    self.texto = MDLabel(text = f"", font_style = "H6", theme_text_color = "Custom", text_color = (1, 1, 1, 1))
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
@@ -181,6 +190,32 @@ class Sumar(Screen):
         self.digitos.text = ""
         #return self.int_sumandos, self.int_digitos
 
-    def update_rect(self, *args):
-        self.rect.pos = self.pos
-        self.rect.size = self.size
+    def comprobar_resultado(self):
+
+        total = 2 * len(self.resultados)
+        resultados = [resultado.text for resultado in self.resultados if not isinstance(resultado, str)]
+        restos = [resto.text for resto in self.restos if not isinstance(resto, str)]
+        resultados = self.modificar_lista(resultados)
+        restos = self.modificar_lista(restos)
+        self.resultados = self.modificar_lista(self.resultados)
+        self.restos = self.modificar_lista(self.restos)
+        #print(restos, resultados)
+        errores_restos = comprobar(restos, self.matriz[0])
+        errores_resultados = comprobar(resultados, self.matriz[-1])
+        self.escribir_comprobar(errores_resultados, self.resultados)
+
+        print(f"los errores estan en: {errores_resultados}")
+        
+    def modificar_lista(self, lista):
+        for elemento in range(0, len(lista)):
+            if lista[elemento] == "":
+                lista[elemento] = '-'
+        lista1 = ["-" for elemento in range(0,(8-len(lista)))]
+        lista1.extend(lista)
+        return lista1
+
+    def escribir_comprobar(self, indices, lista):
+        for error in indices:
+            lista[error].text_color = (1.0, .0, .0, 1)
+
+

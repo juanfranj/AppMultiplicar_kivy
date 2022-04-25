@@ -88,6 +88,8 @@
                     pos_hint: {"center_x":.52, "center_y":.5}
                     size_hint: (.3, .5)
                     font_style: "H6"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
                     halign: "center"
                     text: ""
                         
@@ -121,6 +123,6 @@
                         text_color: 1, 1, 1, 1
                         md_bg_color: 0.3, 0.3, .3, 1
                         font_style: "H6"
-                        on_release:
+                        on_release: root.comprobar_resultado()
                     
         

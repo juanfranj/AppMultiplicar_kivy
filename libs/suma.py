@@ -90,6 +90,11 @@ def devolver_sumandos(sumandos, digitos):
     maximo = [0, 9, 99, 999, 9999]
     numeros = [randint(1, maximo[digitos]) for i in range(sumandos)]
     return numeros
+
+def comprobar(comprobar, correctos):
+    print(comprobar, correctos)
+    errores = [i for i in range(0, len(comprobar)) if comprobar[i] != correctos[i]]
+    return errores
 '''
 if __name__ == '__main__':
     # maximo 5
