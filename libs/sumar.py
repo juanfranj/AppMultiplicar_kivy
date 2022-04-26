@@ -241,6 +241,7 @@ class Sumar(Screen):
             
             if not isinstance(lista[error], str):
                 lista[error].text_color = (1.0, .0, .0, 1)
+                lista[error].text = ""
 
                 if lista[error].text == "":
                     lista[error].hint_text = '__'
