@@ -1,6 +1,8 @@
+from tkinter import Label
 from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivy.lang import Builder
+from kivy.core.text import LabelBase
 #import os
 
 
@@ -12,12 +14,11 @@ from libs.ajustes import Ajustes
 from libs.reiniciar import Reiniciar_BaseDatos
 from libs.sumar import Sumar
 
-#Clock.max_iteration = 1000 
-#path_global = os.getcwd()
-#print(path_global)
+LabelBase.register(name = "UrbanClass",
+    fn_regular = "Urban Class.ttf"
+    )
+
 class AppMulti(MDApp):
-    
-    
     
     def build(self):
         Window.size = (460,820)

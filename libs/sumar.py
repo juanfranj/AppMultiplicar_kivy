@@ -83,13 +83,14 @@ class Sumar(Screen):
                 if i == 0 and self.matriz[i][j] != '-':
                     self.texto = Label(text = f"{self.matriz[i][j]}",
                      font_size = "25",
+                     font_name = "UrbanClass",
                      color = (.36, .68, .89, 1)
                     )
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
                 elif self.matriz[i][j] != '-' and i != self.num_fil-2:
-                    self.texto = Label(text = f"{self.matriz[i][j]}", font_size = "35")
+                    self.texto = Label(text = f"{self.matriz[i][j]}", font_size = "35", font_name = "UrbanClass")
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
@@ -126,6 +127,8 @@ class Sumar(Screen):
                         input_type = "number",
                         halign ="center",
                         text_color = (1.0, 1.0, 1.0, 1),
+                        font_name = "UrbanClass",
+                        hint_text = '__'
                         
                     )
                     if i == 0:
@@ -139,7 +142,7 @@ class Sumar(Screen):
                     self.grid.add_widget(self.texto)
 
                 elif self.matriz[i][j] != '-' and i != self.num_fil-2:
-                    self.texto = Label(text = f"{self.matriz[i][j]}", font_size = "35")
+                    self.texto = Label(text = f"{self.matriz[i][j]}", font_size = "35", font_name = "UrbanClass")
                     #self.texto = MDLabel(text = f"{self.matriz[i][j]}", font_style = "H6", theme_text_color = "Custom", text_color = (1, 1, 1, 1))
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
@@ -195,7 +198,7 @@ class Sumar(Screen):
         except AttributeError as e:
             print(f"Error obtenido es: {e}")
             self.texto_ayuda = self.ids["informacion"]
-            self.texto_ayuda.text = f"Pulsa Botón Calcular"  
+            self.texto_ayuda.text = f"Pulsa Boton Calcular"  
             self.texto_ayuda.haling = "center"
 
     
@@ -215,6 +218,14 @@ class Sumar(Screen):
         errores_resultados = comprobar(resultados, self.matriz[-1])
         self.escribir_comprobar(errores_resultados, self.resultados)
         self.escribir_comprobar(errores_restos, self.restos)
+        
+        errores = len(errores_restos) + len(errores_resultados)
+        if errores > 0:
+            self.texto_ayuda.text = f"{errores} ERRORES"  
+            self.texto_ayuda.haling = "center"
+        else:
+            self.texto_ayuda.text = f"¡¡CORRECTO!!"  
+            self.texto_ayuda.haling = "center"
         #print(f"los resultados estan en: {resultados}")
         #print(f"los restos estan en: {restos}")
         #print(f"los errores de restos estan en: {errores_restos}")
