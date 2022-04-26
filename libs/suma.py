@@ -92,7 +92,7 @@ def devolver_sumandos(sumandos, digitos):
     return numeros
 
 def comprobar(comprobar, correctos):
-    print(comprobar, correctos)
+    #print(comprobar, correctos)
     errores = [i for i in range(0, len(comprobar)) if comprobar[i] != correctos[i]]
     return errores
 '''

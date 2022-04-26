@@ -117,20 +117,16 @@ class Sumar(Screen):
 
     def escribir_sumandos(self, mas):
         #print("el numero de filas es: ", self.num_fil)
+        self.restos = []
+        self.resultados = []
         for i in range(0,self.num_fil):
             for j in range(0,self.num_col):
                 if (i == 0 and j >= (7-mas)) or (i == self.num_fil-1 and j >= (7-mas)):
-                    #self.texto = Label(text = f"")
                     self.texto = MDTextField(
-                        #normal_color = (1.0, 1.0, 1.0, 1),
-                        #active_color = (1.0, 1.0, 1.0, 1),
                         input_type = "number",
                         halign ="center",
                         text_color = (1.0, 1.0, 1.0, 1),
-                        #mode = "fill",
-                        #color_mode = "custom",
-                        #fill_color = (1, 1, 1, 1),
-                        #line_color_normal = (1.0, 1.0, 1.0, 1)
+                        
                     )
                     if i == 0:
                         self.texto.font_size = '25'
@@ -138,6 +134,7 @@ class Sumar(Screen):
                     else:
                         self.texto.font_size = '35'
                         self.resultados.append(self.texto)
+                    
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
@@ -154,8 +151,8 @@ class Sumar(Screen):
                     self.grid.add_widget(self.texto)
 
                 else:
-                    #self.texto = Label(text = f"")
-                    self.texto = MDLabel(text = f"", font_style = "H6", theme_text_color = "Custom", text_color = (1, 1, 1, 1))
+                    self.texto = Label(text = f"")
+                    #self.texto = MDLabel(text = f"", font_style = "H6", theme_text_color = "Custom", text_color = (1, 1, 1, 1))
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
@@ -190,9 +187,23 @@ class Sumar(Screen):
         self.digitos.text = ""
         #return self.int_sumandos, self.int_digitos
 
+    
+    def mostrar_comprobar_resultado(self):
+        try:
+            
+            self.comprobar_resultado()
+        except AttributeError as e:
+            print(f"Error obtenido es: {e}")
+            self.texto_ayuda = self.ids["informacion"]
+            self.texto_ayuda.text = f"Pulsa Botón Calcular"  
+            self.texto_ayuda.haling = "center"
+
+    
     def comprobar_resultado(self):
 
         total = 2 * len(self.resultados)
+        #print(f"los resultados estan en: {self.resultados}")
+        #print(f"los restos estan en: {self.restos}")
         resultados = [resultado.text for resultado in self.resultados if not isinstance(resultado, str)]
         restos = [resto.text for resto in self.restos if not isinstance(resto, str)]
         resultados = self.modificar_lista(resultados)
@@ -203,8 +214,12 @@ class Sumar(Screen):
         errores_restos = comprobar(restos, self.matriz[0])
         errores_resultados = comprobar(resultados, self.matriz[-1])
         self.escribir_comprobar(errores_resultados, self.resultados)
-
-        print(f"los errores estan en: {errores_resultados}")
+        self.escribir_comprobar(errores_restos, self.restos)
+        #print(f"los resultados estan en: {resultados}")
+        #print(f"los restos estan en: {restos}")
+        #print(f"los errores de restos estan en: {errores_restos}")
+        #print(f"los errores de resultados estan en: {errores_resultados}")
+        #print(f"los errores de restos estan en: {errores_restos}")
         
     def modificar_lista(self, lista):
         for elemento in range(0, len(lista)):
@@ -215,7 +230,20 @@ class Sumar(Screen):
         return lista1
 
     def escribir_comprobar(self, indices, lista):
-        for error in indices:
-            lista[error].text_color = (1.0, .0, .0, 1)
+        #print(f"pantalla: {indices}\nmatriz:{lista}")
+        for digito in lista:
 
+            if not isinstance(digito, str):
+                digito.text_color = (1.0, 1.0, 1.0, 1)
+                digito.hint_text = ''
+
+        for error in indices:
+            
+            if not isinstance(lista[error], str):
+                lista[error].text_color = (1.0, .0, .0, 1)
+
+                if lista[error].text == "":
+                    lista[error].hint_text = '__'
+                    lista[error].haling = "center"
+                
 
