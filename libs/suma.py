@@ -7,11 +7,30 @@ def suma(numeros, digitos):
     matriz = devolver_matriz(num_fil, num_col, lista, matriz)
     restos = devolver_restos(matriz, num_col, num_fil)
     matriz = actualizar_matriz(restos, matriz)
+    matriz = comprobar_matriz(matriz, num_col, num_fil)
     matriz, num_fil = incluir_mas(matriz, num_fil, num_col, digitos)
     #imprimir_pregunta(matriz, num_fil)
     #imprimir_resultado(matriz, num_fil)
     return matriz, num_fil, num_col
 
+def comprobar_matriz(matriz, num_col, num_fil):
+    columnas = []
+    restos = []
+    for i in range(0,num_col):
+        columna = [int(fila[i]) for fila in matriz[0::][:-1] if fila[i] != '-']
+        #print(columna)
+        columnas.append(columna)
+        restos.append(sum(columna))
+    #print(restos)
+    for i in range(0,num_col):
+        if matriz[-1][i] != '-':
+            if matriz[-1][i] != str(restos[i])[-1]:
+                #print(matriz[-1][i], str(restos[i])[-1])
+                diferencia = int(matriz[-1][i]) - int(str(restos[i])[-1])
+                if(matriz[0][i] == '-'):
+                    matriz[0][i] = 0
+                matriz[0][i] = str(int(matriz[0][i]) + diferencia)
+    return matriz
 
 def incluir_mas(matriz, num_fil, num_col, digitos):
     fila = ['-' for i in range(0,num_col)]
