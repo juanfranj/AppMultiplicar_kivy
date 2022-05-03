@@ -1,0 +1,22 @@
+<Puzle>
+    BoxLayout:
+        orientation: "vertical"
+        MDLabel:
+            #pos_hint: {"center_x": 0.5, "top": .9}
+            size_hint: (.5, .1)
+            theme_text_color: "Primary"
+            font_style: "H4"
+            halign: "center"
+            text: "Puzle"
+        GridLayout:
+            
+            id: puzle
+            cols: 6
+            rows: 7
+            #pos_hint: {"center_x": 0.5, "top": .5}
+            size_hint: (1, .6)
+            padding: 10, 10
+            spacing: 10, 10
+
+        GridLayout:
+            id:teclado
