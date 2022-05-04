@@ -128,7 +128,7 @@ class Sumar(Screen):
                         halign ="center",
                         text_color = (1.0, 1.0, 1.0, 1),
                         font_name = "UrbanClass",
-                        hint_text = '__'
+                        hint_text = '?'
                         
                     )
                     if i == 0:
@@ -255,7 +255,7 @@ class Sumar(Screen):
                 lista[error].text = ""
 
                 if lista[error].text == "":
-                    lista[error].hint_text = '__'
+                    lista[error].hint_text = '?'
                     lista[error].haling = "center"
                 
 

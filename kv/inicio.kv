@@ -1,20 +1,47 @@
 <Inicio>
-    FloatLayout:
 
-        MDLabel:
-            id: sub_title
-            pos_hint: {"center_x": 0.5, "top": .7}
-            size_hint: (.5, .1)
-            theme_text_color: "Primary"
-            font_style: "H4"
-            halign: "center"
-            text: "Bienvenid@s"
-        
-        MDLabel:
-            id: mensaje
-            pos_hint: {"center_x": .5, "top": .5}
-            size_hint: (.5, .1)
-            theme_text_color: "Primary"
-            font_style: "H5"
-            halign: "center"
-            text: "¿Preparad@ para comenzar?"
+    BoxLayout:
+        padding: "5dp", "5dp"
+        #spacing: "5dp", "5dp"
+
+        canvas:
+            
+            Color:
+                rgba: .43, .17, .0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout:
+            
+            canvas:
+                Color:
+                    rgba: .04, .33, .27, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    #radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
+
+            MDLabel:
+                id: sub_title
+                pos_hint: {"center_x": 0.5, "top": .7}
+                size_hint: (.8, .1)
+                theme_text_color: "Primary"
+                font_style: "H4"
+                font_name : "Urban Class"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                text: "Bienvenid@s"
+            
+            MDLabel:
+                id: mensaje
+                pos_hint: {"center_x": .5, "top": .5}
+                size_hint: (.5, .1)
+                theme_text_color: "Primary"
+                font_style: "H5"
+                font_name : "Urban Class"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                text: "¿Preparad@ para comenzar?"

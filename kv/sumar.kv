@@ -1,13 +1,13 @@
 
 <Sumar>
     BoxLayout:
-        #padding: 5
+        padding: "5dp", "5dp"
         spacing: 5
         orientation: "vertical"
 
         canvas:
             Color:
-                rgba: .55, .27, .07, 1
+                rgba: .43, .17, .0, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -66,7 +66,7 @@
                 
                 MDFillRoundFlatButton:
 
-                    pos_hint: {"x":0.75, "center_y":.5}
+                    pos_hint: {"x":0.74, "center_y":.5}
                     #size_hint: 0.3, None
                     id: calcular
                     text: "Comenzar"
@@ -77,13 +77,13 @@
                     on_release: root.mostrar_suma()
         
         BoxLayout:
-            size_hint: (1,.8)
+            size_hint: (1,.9)
             orientation: "vertical"
             
             canvas:
                 Color:
                     rgba: .04, .33, .27, 1
-                Rectangle:
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
                     #radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
@@ -91,10 +91,11 @@
                 size_hint: (1,.05)
                 MDLabel:
                     id: informacion
-                    pos_hint: {"center_x":.52, "center_y":.5}
+                    pos_hint: {"x":.5, "top":.5}
                     size_hint: (.3, .5)
                     font_style: "H6"
                     font_name : "Urban Class"
+                    font_size: "30sp"
                     theme_text_color: "Custom"
                     text_color: 1, 1, 1, 1
                     halign: "center"
@@ -107,12 +108,12 @@
                     id: pizarra
                     GridLayout:
                         id:grid
-                        size_hint: (1, .9)
-                        pos_hint: {"x":.0, "y":.1}
+                        size_hint: (1, .92)
+                        pos_hint: {"x":.0, "top":1}
                         
                     MDFillRoundFlatButton:
                         id: boton_calcular
-                        size_hint: (.4, .1)
+                        size_hint: (.4, .08)
                         pos_hint: {"center_x":0.25, "center_y":.06}
                         text: "Resultado"
                         theme_text_color: "Custom"
@@ -123,7 +124,7 @@
                     
                     MDFillRoundFlatButton:
                         id: boton_comprobar
-                        size_hint: (.4, .1)
+                        size_hint: (.4, .08)
                         pos_hint: {"center_x":0.75, "center_y":.06}
                         text: "Comprobar"
                         theme_text_color: "Custom"

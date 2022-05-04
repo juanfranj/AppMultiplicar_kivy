@@ -24,7 +24,9 @@ class AppMulti(MDApp):
     def build(self):
         Window.size = (460,820)
         self.title = "PequeMates"
+        #self.theme_cls.primary_palette = "Teal"
         self.theme_cls.primary_palette = "Teal"
+        self.theme_cls.primary_hue = "900"
 
         # Carga del archivo kivy
         return Builder.load_file("main.kv")
