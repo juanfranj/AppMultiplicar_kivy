@@ -25,6 +25,7 @@ class Sumar(Screen):
 
     def on_pre_enter(self, *args):
         self.app.title = "Sumar"
+        self.comprobar_celdas()
 
     def mostrar_suma(self):
         #self.pizarra = self.ids["pizarra"]

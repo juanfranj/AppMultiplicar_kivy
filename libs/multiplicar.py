@@ -50,7 +50,7 @@ class Multiplicar(Screen):
             self.mult.add_widget(self.tab)
 
     def on_pre_enter(self, *args):
-        self.app.title = "Multiplicar"
+        self.app.title = "Repasar Tablas"
     
     def limpiar_tablas(self):
         for select in self.selecciones:

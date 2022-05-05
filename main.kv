@@ -4,6 +4,7 @@
 #:include kv/ajustes.kv
 #:include kv/sumar.kv
 #:include kv/puzle.kv
+#:include kv/multiplicacion.kv
 ##:include kv/reiniciar.kv
 
 MDNavigationLayout:
@@ -43,6 +44,9 @@ MDNavigationLayout:
                     Puzle:
                         id: puzle
                         name: "puzle"
+                    Multiplicacion:
+                        id: multiplicacion
+                        name: "multiplicacion"
                     #Reiniciar:
                         #id: reiniciar
                         #name: "reiniciar"
@@ -73,7 +77,7 @@ MDNavigationLayout:
                             icon: "language-python"
 
                     OneLineIconListItem:
-                        text: "Multiplicar"
+                        text: "Repasar Tablas"
                         # Aquí va lo que queremos ejecutar cuando se suelta el botón
                         on_release:
                             screen_manager.current = "multiplicar"
@@ -91,7 +95,16 @@ MDNavigationLayout:
                             icon: "plus-box"
                     
                     OneLineIconListItem:
-                        text: "Puzle"
+                        text: "Multiplicar"
+                        # Aquí va lo que queremos ejecutar cuando se suelta el botón
+                        on_release:
+                            screen_manager.current = "multiplicacion"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "multiplication-box"
+                    
+                    OneLineIconListItem:
+                        text: "Puzzle"
                         # Aquí va lo que queremos ejecutar cuando se suelta el botón
                         on_release:
                             screen_manager.current = "puzle"

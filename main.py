@@ -14,6 +14,7 @@ from libs.ajustes import Ajustes
 from libs.reiniciar import Reiniciar_BaseDatos
 from libs.sumar import Sumar
 from libs.puzle import Puzle
+from libs.multiplicacion import Multiplicacion
 
 LabelBase.register(name = "UrbanClass",
     fn_regular = "Urban Class.ttf"
@@ -24,7 +25,6 @@ class AppMulti(MDApp):
     def build(self):
         Window.size = (460,820)
         self.title = "PequeMates"
-        #self.theme_cls.primary_palette = "Teal"
         self.theme_cls.primary_palette = "Teal"
         self.theme_cls.primary_hue = "900"
 
