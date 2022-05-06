@@ -76,6 +76,7 @@ class Multiplicacion(Screen):
 
     def escribir_multiplicacion_media(self):
         print("el numero de filas es: ", self.num_fil)
+        print(f"longitud ultima fila: {len(str(self.multiplicador*self.multiplicando))}")
         self.resultados = []
         for i in range(0,self.num_fil):
             for j in range(0,self.num_col):
@@ -100,11 +101,11 @@ class Multiplicacion(Screen):
                         #text_color = (1, 1, 1, 1),
                         )
                     self.texto .font_name = "UrbanClass"
-                    self.texto.font_size = "35sp"
+                    self.texto.font_size = "30sp"
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
-                elif i == 3 or i == self.num_fil-2:
+                elif i == 3 and j >= 8 - len(str(self.multiplicando)):
                     self.texto = Label(
                         text = f"______",
                         #theme_text_color = "Custom",
@@ -113,6 +114,17 @@ class Multiplicacion(Screen):
                     self.texto.font_size = "40sp" 
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
+                
+                elif i == self.num_fil-2 and j >= 8 - len(str(self.multiplicador*self.multiplicando)):
+                    self.texto = Label(
+                        text = f"______",
+                        #theme_text_color = "Custom",
+                        #text_color = (1, 1, 1, 1),
+                        )
+                    self.texto.font_size = "40sp" 
+                    self.celdas.append(self.texto)
+                    self.grid.add_widget(self.texto)
+                
 
                 else:
                     self.texto = Label(text = f"")
