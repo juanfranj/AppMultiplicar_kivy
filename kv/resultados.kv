@@ -20,6 +20,18 @@
                     pos: self.pos
                     radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
 
+            MDLabel:
+                id: mensaje
+                pos_hint: {"center_x": .5, "center_y": .5}
+                size_hint: (.8, .1)
+                theme_text_color: "Primary"
+                font_style: "H5"
+                font_name : "Urban Class"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+                text: "resultados en la tablas de multiplicar"
+
         BoxLayout:
             padding: 20
             spacing:20
@@ -32,46 +44,47 @@
                     pos: self.pos
                     radius:[(20.0, 20.0), (20.0, 20.0), (20.0, 20.0), (20.0, 20.0)]
                 
-            MDFillRoundFlatButton:
-
-                pos_hint: {"x":0, "center_y":.5}
-                #size_hint: 0.3, None
-                id: clear
-                text: "Clear"
-                theme_text_color: "Custom"
-                text_color: 1, 1, 1, 1
-                md_bg_color: app.theme_cls.primary_color
-                on_release: root.clear_canvas_tablas()
-
-            MDFillRoundFlatButton:
-
-                pos_hint: {"x":0.5, "center_y":.5}
-                #size_hint: 0.3, None
-                id: resultados
-                text: "Resultados"
-                theme_text_color: "Custom"
-                text_color: 1, 1, 1, 1
-                md_bg_color: app.theme_cls.primary_color
-                on_release: root.tabla_resultados()
-            
-            MDFillRoundFlatButton:
-
-                pos_hint: {"x":0.75, "center_y":.5}
-                #size_hint: 0.3, None
-                id: estadisticas
-                text: "Estadisticas"
-                theme_text_color: "Custom"
-                text_color: 1, 1, 1, 1
-                md_bg_color: app.theme_cls.primary_color
-                on_release: root.tabla_estadisticas()
-
+            MDFloatLayout:
             # MDFillRoundFlatButton:
 
-            #     pos_hint: {"x":1, "center_y":.5}
-            #     size_hint: 0.3, None
-            #     text: "Reiniciar"
+            #     pos_hint: {"x":0, "center_y":.5}
+            #     #size_hint: 0.3, None
+            #     id: clear
+            #     text: "Clear"
             #     theme_text_color: "Custom"
             #     text_color: 1, 1, 1, 1
             #     md_bg_color: app.theme_cls.primary_color
-            #     on_release:
+            #     on_release: root.clear_canvas_tablas()
+
+                MDFillRoundFlatButton:
+
+                    pos_hint: {"x":0.2, "center_y":.5}
+                    #size_hint: 0.3, None
+                    id: resultados
+                    text: "Resultados"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: app.theme_cls.primary_color
+                    on_release: root.tabla_resultados()
+                
+                MDFillRoundFlatButton:
+
+                    pos_hint: {"x":0.6, "center_y":.5}
+                    #size_hint: 0.3, None
+                    id: estadisticas
+                    text: "Estadisticas"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: app.theme_cls.primary_color
+                    on_release: root.tabla_estadisticas()
+
+                # MDFillRoundFlatButton:
+
+                #     pos_hint: {"x":1, "center_y":.5}
+                #     size_hint: 0.3, None
+                #     text: "Reiniciar"
+                #     theme_text_color: "Custom"
+                #     text_color: 1, 1, 1, 1
+                #     md_bg_color: app.theme_cls.primary_color
+                #     on_release:
 

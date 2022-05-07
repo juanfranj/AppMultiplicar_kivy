@@ -3,7 +3,7 @@ from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp 
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.button import MDFillRoundFlatButton
-from kivymd.uix.label import MDLabel
+from kivy.uix.label import Label
 from kivy.graphics import Color, RoundedRectangle, Rectangle
 from kivy.metrics import dp
 
@@ -86,9 +86,10 @@ class Resultados(Screen):
         base=Resultados()
         self.add_widget(base)
 
-
     def on_pre_enter(self, *args):
         self.app.title = "Resultados"
+        self.clear_canvas_tablas()
+
     
     def update_rect(self, *args):
         self.rect.pos = self.pos
