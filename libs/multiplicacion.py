@@ -58,6 +58,7 @@ class Multiplicacion(Screen):
                 fin = True
             except:
                 print(f"error")
+        if self.str_dif == "facil": self.num_fil = 5
         self.grid = self.ids["grid"]
         self.grid.cols = 8
         self.grid.rows = 15
@@ -77,9 +78,11 @@ class Multiplicacion(Screen):
             self.texto_ayuda.haling = "center" 
 
     def escribir_multiplicacion_media(self):
-        self.resultados = []
+        self.resultados = [['-' for j in range(0,self.num_col)] for i in range(0,self.num_fil)]
+        #imprimir_resultado(self.resultados, self.num_fil)
         for i in range(0,self.num_fil):
             for j in range(0,self.num_col):
+                self.resultados[i][j] = self.matriz[i][j]
                 if (i > 3)  and i != self.num_fil-2 and self.matriz[i][j] != '-':
                     self.texto = MDTextField(
                         input_type = "number",
@@ -87,12 +90,16 @@ class Multiplicacion(Screen):
                         text_color = (1.0, 1.0, 1.0, 1),
                         font_name = "UrbanClass",
                         hint_text = '?',
-                        font_size = "25sp"    
+                        font_size = "25sp",
+                        # background_disabled_normal =  '',
+                        # background_normal = '',
+                        # background_color = (0.207, 0.635, 0.423, 0.9)
+                        foreground_color = (.3,.3,.3,1),
+                        disabled_foreground_color = (.3,.3,.3,1)
+                        
                     )
-                    #self.texto.size_hint_y = None
-                    #self.texto.height= "5dp"
-                    self.resultados.append(self.texto)
-                    
+                    #self.texto.fill_color = (.0, .0, .0, 0)
+                    self.resultados[i][j] = self.texto
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
@@ -108,7 +115,7 @@ class Multiplicacion(Screen):
                     self.grid.add_widget(self.texto)
 
                 elif i == 3:
-                    if j >= 8 - len(str(self.multiplicando)):
+                    if j >= 7 - len(str(self.multiplicando)):
                         self.texto = Label( text = f"______")                                  
                     else:
                         self.texto = Label( text = f" ")
@@ -159,7 +166,7 @@ class Multiplicacion(Screen):
                     self.grid.add_widget(self.texto)
 
                 elif i == 3:
-                    if j >= 8 - len(str(self.multiplicando)):
+                    if j >= 7 - len(str(self.multiplicando)):
                         self.texto = Label( text = f"-----")                                  
                     else:
                         self.texto = Label( text = f" ")
@@ -222,6 +229,55 @@ class Multiplicacion(Screen):
         
         self.multiplicando, self. multiplicador = devolver_factores(multiplicando, multiplicador)
     
+    
+    def mostrar_comprobar_resultado(self):
+        try:
+            
+            self.comprobar_resultado()
+        except AttributeError as e:
+            print(f"Error obtenido es: {e}")
+            self.texto_ayuda = self.ids["informacion"]
+            self.texto_ayuda.text = f"Pulsa Boton Calcular"  
+            self.texto_ayuda.haling = "center"
+    
+    def comprobar_resultado(self):
+        resultados_pantalla = self.obtener_resultados_pantalla()
+        errores = self.comprobar_multi(resultados_pantalla)
+        self.escribir_errores(errores)
+
+        imprimir_resultado(resultados_pantalla, self.num_fil)
+        
+    def obtener_resultados_pantalla(self):
+        resultados = [['-' for j in range(0,self.num_col)] for i in range(0,self.num_fil)]
+        for i in range(0,self.num_fil):
+            for j in range(0,self.num_col):
+                if not isinstance(self.resultados[i][j], str):
+                    resultados[i][j] = self.resultados[i][j].text
+        return resultados
+    
+    def comprobar_multi(self, resultados_pantalla):
+        errores = 0
+        for i in range(0,self.num_fil):
+            for j in range(0,self.num_col):
+                if not isinstance(self.resultados[i][j], str):
+                    if resultados_pantalla[i][j] != self.matriz[i][j]:
+                        self.resultados[i][j].text_color = (1.0, .0, .0, 1)
+                        self.resultados[i][j].text = ""
+                        self.resultados[i][j].hint_text = "?"
+                        errores += 1
+                    else:
+                        self.resultados[i][j].hint_text = ""
+                        self.resultados[i][j].text_color = (1.0, 1.0, 1.0, 1)
+        return errores
+                        
+    def escribir_errores(self, errores):
+        if errores > 0:
+            self.texto_ayuda.text = f"{errores} ERRORES"  
+            self.texto_ayuda.haling = "center"
+        else:
+            self.texto_ayuda.text = f"¡¡CORRECTO!!"  
+            self.texto_ayuda.haling = "center"                   
+                   
     def imprimir_resultado(self, matriz):
         j = 0
         print("Resultado:\n")
