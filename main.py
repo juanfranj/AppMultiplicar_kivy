@@ -1,4 +1,4 @@
-from tkinter import Label
+
 from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivy.lang import Builder

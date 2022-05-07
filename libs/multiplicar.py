@@ -1,5 +1,4 @@
-from msilib.schema import Property
-from tabnanny import check
+
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
 from kivy.graphics import Color, RoundedRectangle

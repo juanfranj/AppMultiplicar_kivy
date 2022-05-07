@@ -32,13 +32,13 @@ class Multiplicacion(Screen):
         for nivel in niveles:
             self.nombre = MDLabel(
                 text = nivel,
-                size_hint = (.35, .5),
+                size_hint = (.8, .5),
                 theme_text_color = "Custom",
                 text_color = (1, 1, 1, 1),
                 halign = "center"
                 )
             self.nombre.font_name = "Urban Class"
-            self.font_size = "30sp"
+            self.font_size = "15sp"
             self.check = MDCheckbox(size_hint= (.2, .2))
             self.check.bind(active=self.checkbox_click)
             self.dificultad.append(self.check)
@@ -49,13 +49,8 @@ class Multiplicacion(Screen):
     
     def mostrar_multiplicacion(self):
         self.comprobar_celdas()
-
         self.texto_ayuda = self.ids["informacion"]
-        
         fin = False
-        # self.datos_entrada()
-        # self.matriz, self.num_col, self.num_fil = multiplicar([self.multiplicando, self.multiplicador])
-        
         while not fin:
             try:
                 self.datos_entrada()
@@ -63,20 +58,25 @@ class Multiplicacion(Screen):
                 fin = True
             except:
                 print(f"error")
-                
-        
         self.grid = self.ids["grid"]
         self.grid.cols = 8
-        self.grid.rows = 12
-
+        self.grid.rows = 15
         self.escribir_multiplicacion_media()
-
         self.imprimir_resultado(self.matriz)
         self.texto_ayuda.text = f"Multiplicar"
 
+    def mostrar_resultado(self):
+        try:
+            self.comprobar_celdas() 
+            self.escribir_resultado_media()
+            self.texto_ayuda.text = f"RESULTADO"  
+            self.texto_ayuda.haling = "center" 
+        except:
+            self.texto_ayuda = self.ids["informacion"]
+            self.texto_ayuda.text = f"Pulsa Boton Calcular"  
+            self.texto_ayuda.haling = "center" 
+
     def escribir_multiplicacion_media(self):
-        print("el numero de filas es: ", self.num_fil)
-        print(f"longitud ultima fila: {len(str(self.multiplicador*self.multiplicando))}")
         self.resultados = []
         for i in range(0,self.num_fil):
             for j in range(0,self.num_col):
@@ -87,8 +87,10 @@ class Multiplicacion(Screen):
                         text_color = (1.0, 1.0, 1.0, 1),
                         font_name = "UrbanClass",
                         hint_text = '?',
-                        font_size = "35sp"    
+                        font_size = "25sp"    
                     )
+                    #self.texto.size_hint_y = None
+                    #self.texto.height= "5dp"
                     self.resultados.append(self.texto)
                     
                     self.celdas.append(self.texto)
@@ -101,34 +103,88 @@ class Multiplicacion(Screen):
                         #text_color = (1, 1, 1, 1),
                         )
                     self.texto .font_name = "UrbanClass"
-                    self.texto.font_size = "30sp"
+                    self.texto.font_size = "25sp"
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
-                elif i == 3 and j >= 8 - len(str(self.multiplicando)):
-                    self.texto = Label(
-                        text = f"______",
-                        #theme_text_color = "Custom",
-                        #text_color = (1, 1, 1, 1),
-                        )
+                elif i == 3:
+                    if j >= 8 - len(str(self.multiplicando)):
+                        self.texto = Label( text = f"______")                                  
+                    else:
+                        self.texto = Label( text = f" ")
+                        
                     self.texto.font_size = "40sp" 
+                    self.texto.size_hint_y = None
+                    self.texto.height= "1dp"
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
                 
-                elif i == self.num_fil-2 and j >= 8 - len(str(self.multiplicador*self.multiplicando)):
-                    self.texto = Label(
-                        text = f"______",
-                        #theme_text_color = "Custom",
-                        #text_color = (1, 1, 1, 1),
-                        )
+                elif i == self.num_fil-2:
+                    if j >= 8 - len(str(self.multiplicador*self.multiplicando)):
+                        self.texto = Label( text = f"______")                                  
+                    else:
+                        self.texto = Label( text = f" ")
+
                     self.texto.font_size = "40sp" 
+                    self.texto.size_hint_y = None
+                    self.texto.height= "1dp"
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
                 
 
                 else:
                     self.texto = Label(text = f"")
-                    #self.texto = MDLabel(text = f"", font_style = "H6", theme_text_color = "Custom", text_color = (1, 1, 1, 1))
+                    self.celdas.append(self.texto)
+                    self.grid.add_widget(self.texto)
+
+        comenzar =  self.num_col * self.num_fil
+        #print("Comenzando en blanco: ", comenzar)
+        for celda in range(comenzar, 120):
+            self.texto = Label(text = f" ")
+            self.celdas.append(self.texto)
+            self.grid.add_widget(self.texto)
+
+    def escribir_resultado_media(self):
+
+        for i in range(0,self.num_fil):
+            for j in range(0,self.num_col):
+
+                if self.matriz[i][j] != '-' and i != 3 and i != self.num_fil-2:
+                    self.texto = Label(
+                        text = f"{self.matriz[i][j]}",
+                        )
+                    self.texto .font_name = "UrbanClass"
+                    self.texto.font_size = "25sp"
+                    self.celdas.append(self.texto)
+                    self.grid.add_widget(self.texto)
+
+                elif i == 3:
+                    if j >= 8 - len(str(self.multiplicando)):
+                        self.texto = Label( text = f"-----")                                  
+                    else:
+                        self.texto = Label( text = f" ")
+                        
+                    self.texto.font_size = "40sp" 
+                    self.texto.size_hint_y = None
+                    self.texto.height= "1dp"
+                    self.celdas.append(self.texto)
+                    self.grid.add_widget(self.texto)
+                
+                elif i == self.num_fil-2:
+                    if j >= 8 - len(str(self.multiplicador*self.multiplicando)):
+                        self.texto = Label( text = f"-----")                                  
+                    else:
+                        self.texto = Label( text = f" ")
+
+                    self.texto.font_size = "40sp" 
+                    self.texto.size_hint_y = None
+                    self.texto.height= "1dp"
+                    self.celdas.append(self.texto)
+                    self.grid.add_widget(self.texto)
+                
+
+                else:
+                    self.texto = Label(text = f"")
                     self.celdas.append(self.texto)
                     self.grid.add_widget(self.texto)
 
@@ -138,9 +194,6 @@ class Multiplicacion(Screen):
             self.texto = Label(text = f" ")
             self.celdas.append(self.texto)
             self.grid.add_widget(self.texto)
-
-
-
 
     def comprobar_celdas(self):
         if len(self.celdas) > 0:
