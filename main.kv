@@ -3,8 +3,8 @@
 #:include kv/resultados.kv
 #:include kv/ajustes.kv
 #:include kv/sumar.kv
-#:include kv/puzle.kv
 #:include kv/multiplicacion.kv
+#:include kv/estudiar.kv
 ##:include kv/reiniciar.kv
 
 MDNavigationLayout:
@@ -41,9 +41,9 @@ MDNavigationLayout:
                     Sumar:
                         id: sumar
                         name: "sumar"
-                    Puzle:
-                        id: puzle
-                        name: "puzle"
+                    Estudiar:
+                        id: estudiar
+                        name: "estudiar"
                     Multiplicacion:
                         id: multiplicacion
                         name: "multiplicacion"
@@ -95,6 +95,14 @@ MDNavigationLayout:
                             icon: "multiplication-box"
                     
                     OneLineIconListItem:
+                        text: "Estudiar Tablas"
+                        # Aquí va lo que queremos ejecutar cuando se suelta el botón
+                        on_release:
+                            screen_manager.current = "estudiar"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "notebook-edit"
+                    OneLineIconListItem:
                         text: "Repasar Tablas"
                         # Aquí va lo que queremos ejecutar cuando se suelta el botón
                         on_release:
@@ -102,15 +110,6 @@ MDNavigationLayout:
                             nav_drawer.set_state()
                         IconLeftWidget:
                             icon: "numeric"
-
-                    # OneLineIconListItem:
-                    #     text: "Puzzle"
-                    #     # Aquí va lo que queremos ejecutar cuando se suelta el botón
-                    #     on_release:
-                    #         screen_manager.current = "puzle"
-                    #         nav_drawer.set_state()
-                    #     IconLeftWidget:
-                    #         icon: "puzzle"
                     
                     OneLineIconListItem:
                         text: "Resultados Tablas"

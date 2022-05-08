@@ -13,8 +13,8 @@ from libs.resultados import Resultados
 from libs.ajustes import Ajustes
 from libs.reiniciar import Reiniciar_BaseDatos
 from libs.sumar import Sumar
-from libs.puzle import Puzle
 from libs.multiplicacion import Multiplicacion
+from libs.estudiar import Estudiar
 
 LabelBase.register(name = "UrbanClass",
     fn_regular = "Urban Class.ttf"

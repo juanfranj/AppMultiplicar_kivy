@@ -1,0 +1,46 @@
+<Estudiar>
+    BoxLayout:
+        id: botones
+        padding: "5dp", "5dp"
+        #spacing: "5dp", "5dp"
+
+        canvas:
+            
+            Color:
+                rgba: .43, .17, .0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout:
+            id: pizarra
+            canvas:
+                Color:
+                    rgba: .04, .33, .27, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+            GridLayout:
+                id: botones
+                padding: "10dp", "10dp"
+                # rows: 3
+                # cols: 3
+                size_hint: (1, 0.85)
+                pos_hint: {"x": 0, "top": 1}
+                
+            Label:
+                id: informacion
+                size_hint: (1, .15)
+                pos_hint: {"center_x": 0.5, "y": .0}
+                padding: "5dp", "5dp"
+                theme_text_color: "Primary"
+                font_style: "H6"
+                font_name: "Urban Class"
+                font_size: "20sp"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                halign: "center"
+           
+                
+        
+
