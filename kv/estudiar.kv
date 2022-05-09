@@ -23,9 +23,10 @@
             GridLayout:
                 id: botones
                 padding: "10dp", "10dp"
+                spacing: "10dp", "10dp"
                 # rows: 3
                 # cols: 3
-                size_hint: (1, 0.85)
+                size_hint: (1, 0.8)
                 pos_hint: {"x": 0, "top": 1}
                 
             Label:
@@ -40,6 +41,15 @@
                 theme_text_color: "Custom"
                 text_color: 1, 1, 1, 1
                 halign: "center"
+            GridLayout:
+                id: digitos
+                padding: "5dp", "5dp"
+                spacing: "3dp", "3dp"
+                rows: 2
+                cols: 6
+                size_hint: (.9, 0.2)
+                pos_hint: {"x": .05, "top": .20}
+                
            
                 
         
