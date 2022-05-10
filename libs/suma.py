@@ -27,6 +27,8 @@ def comprobar_matriz(matriz, num_col, num_fil):
             if matriz[-1][i] != str(restos[i])[-1]:
                 #print(matriz[-1][i], str(restos[i])[-1])
                 diferencia = int(matriz[-1][i]) - int(str(restos[i])[-1])
+                if diferencia < 0:
+                    diferencia = 10 - int(str(restos[i])[-1])
                 if(matriz[0][i] == '-'):
                     matriz[0][i] = 0
                 matriz[0][i] = str(int(matriz[0][i]) + diferencia)

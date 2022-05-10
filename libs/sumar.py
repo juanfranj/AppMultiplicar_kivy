@@ -4,11 +4,11 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.uix.textfield import MDTextField, MDTextFieldRound
  
 
 from kivymd.app import MDApp
-
 
 
 
@@ -19,6 +19,7 @@ class Sumar(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.app = MDApp.get_running_app()
+        self.dificultad = []
         self.celdas = []
         self.resultados = []
         self.restos = []
@@ -26,14 +27,42 @@ class Sumar(Screen):
     def on_pre_enter(self, *args):
         self.app.title = "Sumar"
         self.comprobar_celdas()
+    
+    def checkbox_click(self, instance, value):
+        for i in self.dificultad:
+            if i != instance:
+                i.active = False
+            else:
+                i.active = value
+        instance.active = value
+    
+    def on_kv_post(self, *args):
+        self.nivel = self.ids["dificultad"]
+        niveles = ["Facil", "Medio", "Dificil"]
+        for nivel in niveles:
+            self.nombre = MDLabel(
+                text = nivel,
+                size_hint = (.8, .5),
+                theme_text_color = "Custom",
+                text_color = (1, 1, 1, 1),
+                halign = "center"
+                )
+            self.nombre.font_name = "Urban Class"
+            self.font_size = "15sp"
+            self.check = MDCheckbox(size_hint= (.2, .2))
+            self.check.bind(active=self.checkbox_click)
+            self.dificultad.append(self.check)
+            self.nivel.add_widget(self.nombre)
+            self.nivel.add_widget(self.check)
+        self.dificultad[0].active = True
 
     def mostrar_suma(self):
         #self.pizarra = self.ids["pizarra"]
         self.comprobar_celdas()
 
         self.texto_ayuda = self.ids["informacion"]
-        self.sumandos = self.ids["sumandos"]
-        self.digitos = self.ids["digitos"]
+        #self.sumandos = self.ids["sumandos"]
+        #self.digitos = self.ids["digitos"]
         self.datos_entrada()
         self.numeros = devolver_sumandos(self.int_sumandos, self.int_digitos)
         self.matriz, self.num_fil, self.num_col = suma(self.numeros, self.int_digitos)
@@ -176,27 +205,44 @@ class Sumar(Screen):
             self.grid.add_widget(self.texto)
     
     def datos_entrada(self):
-        try:
-            if int(self.sumandos.text) > 5 or int(self.sumandos.text) < 2:
-                self.int_sumandos = 3
-            else:
-                self.int_sumandos = int(self.sumandos.text)
-        except:
-            self.int_sumandos = 3
-            #self.texto_ayuda.text = f"Sumandos_error: {self.int_sumandos} Digitos: {self.digitos.text}"
+        # try:
+        #     if int(self.sumandos.text) > 5 or int(self.sumandos.text) < 2:
+        #         self.int_sumandos = 3
+        #     else:
+        #         self.int_sumandos = int(self.sumandos.text)
+        # except:
+        #     self.int_sumandos = 3
+        #     #self.texto_ayuda.text = f"Sumandos_error: {self.int_sumandos} Digitos: {self.digitos.text}"
         
-        #calculo de digitos
-        try:
-            if int(self.digitos.text) > 4 or int(self.digitos.text) < 1:
-                self.int_digitos = 3
-            else:
-                self.int_digitos = int(self.digitos.text)
-        except:
+        # #calculo de digitos
+        # try:
+        #     if int(self.digitos.text) > 4 or int(self.digitos.text) < 1:
+        #         self.int_digitos = 3
+        #     else:
+        #         self.int_digitos = int(self.digitos.text)
+        # except:
+        #     self.int_digitos = 3
+        #     #self.texto_ayuda.text = f"Sumandos: {self.int_sumandos} Digitos_error: {self.int_digitos}"
+        if self.dificultad[0].active == True:
+            self.str_dif = "facil"
+            self.int_sumandos = 2
+            self.int_digitos = 2
+        elif self.dificultad[1].active == True:
+            self.str_dif = "medio"
+            self.int_sumandos = 3
             self.int_digitos = 3
-            #self.texto_ayuda.text = f"Sumandos: {self.int_sumandos} Digitos_error: {self.int_digitos}"
+        elif self.dificultad[2].active == True:
+            self.str_dif = "dificil"
+            self.int_sumandos = 4
+            self.int_digitos = 4
+        else:
+            self.dificultad[0].active = True
+            self.str_dif = "facil"
+            self.int_sumandos = 2
+            self.int_digitos = 2
 
-        self.sumandos.text = ""
-        self.digitos.text = ""
+        #self.sumandos.text = ""
+        #self.digitos.text = ""
         #return self.int_sumandos, self.int_digitos
 
     

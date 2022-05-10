@@ -26,45 +26,12 @@
             
             FloatLayout:
 
-                MDLabel:
-                    pos_hint: {"center_x":.15, "center_y":.5}
-                    size_hint: (.4, .5)
-                    font_style: "H6"
-                    font_name : "Urban Class"
-                    font_size: "18sp"
-                    halign: "center"
-                    text: "Sumandos:"
-                    theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-
-                MDTextFieldRect:
-                    id: sumandos
-                    pos_hint:{"center_x":.35, "center_y": 0.5}
-                    size_hint:(.09, .32)
-                    hint_text: "[2-5]"
-                    input_type: "number"
-                    font_style:"H6"
-                    halign: "center"
-                
-                MDLabel:
-                    pos_hint: {"center_x":.53, "center_y":.5}
-                    size_hint: (.3, .5)
-                    font_style: "H6"
-                    font_name : "Urban Class"
-                    font_size: "18sp"
-                    theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-                    halign: "center"
-                    text: "Digitos:"
-
-                MDTextFieldRect:
-                    id: digitos
-                    pos_hint:{"center_x":.68, "center_y": 0.5}
-                    hint_text: "[1-4]"
-                    size_hint:(.09, .32)
-                    input_type: "number"
-                    font_style:"H6"
-                    halign: "center"
+                GridLayout:
+                    id: dificultad
+                    size_hint: (.75, 1)
+                    pos_hint: {"x": .0, "center_y": .5}
+                    rows: 1
+                    haling: "center"
                 
                 MDFillRoundFlatButton:
 
